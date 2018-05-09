@@ -1,0 +1,6 @@
+.classpath
+.project
+.settings
+*/target
+/transpiler/nbproject/
+/veneni-message/nbproject/
