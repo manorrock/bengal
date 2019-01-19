@@ -10,7 +10,9 @@
     <packaging>pom</packaging>
     <name>Veneni Project</name>
     <url>http://www.veneni.com</url>
-    <modules></modules>
+    <modules>
+        <module>java</module>
+    </modules>
     <build>
         <pluginManagement>
             <plugins>
