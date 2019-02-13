@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class StringTransformer {
+public class StringTransformer extends BaseTransformer {
 
     /**
      * Stores the string builder.
@@ -28,22 +28,6 @@ public class StringTransformer {
      */
     public StringTransformer() {
         stringBuilder = new StringBuilder();
-    }
-
-    /**
-     * Utility method to drain the StringBuilder back into a list.
-     *
-     * @param stringBuilder the string builder to drain.
-     * @return the list.
-     */
-    private List drainStringBuilderToList(StringBuilder stringBuilder) {
-        ArrayList result = new ArrayList();
-        if (stringBuilder.length() > 0) {
-            for (int i = 0; i < stringBuilder.length(); i++) {
-                result.add(stringBuilder.charAt(i));
-            }
-        }
-        return result;
     }
 
     /**
