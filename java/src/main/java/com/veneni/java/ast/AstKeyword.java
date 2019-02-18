@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
  */
-package com.veneni.java;
+package com.veneni.java.ast;
 
 import java.util.Objects;
 
@@ -10,7 +10,7 @@ import java.util.Objects;
  * 
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class Keyword {
+public class AstKeyword {
     
     /**
      * Stores the keyword.
@@ -22,7 +22,7 @@ public class Keyword {
      * 
      * @param keyword the keyword.
      */
-    public Keyword(String keyword) {
+    public AstKeyword(String keyword) {
         this.keyword = keyword;
     }
 
@@ -35,8 +35,8 @@ public class Keyword {
     @Override
     public boolean equals(Object object) {
         boolean result = false;
-        if (object instanceof Keyword) {
-            Keyword candidate = (Keyword) object;
+        if (object instanceof AstKeyword) {
+            AstKeyword candidate = (AstKeyword) object;
             if (candidate.keyword.equals(keyword)) {
                 result = true;
             }
