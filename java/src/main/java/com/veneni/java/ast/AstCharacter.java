@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
  */
-package com.veneni.java;
+package com.veneni.java.ast;
 
 /**
  * An AST character.

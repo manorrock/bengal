@@ -3,13 +3,11 @@
  */
 package com.veneni.java.transformer;
 
-import com.veneni.java.Done;
 import com.veneni.java.ast.AstKeyword;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * The JUnit tests for the KeywordTransformer class.
