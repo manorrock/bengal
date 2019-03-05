@@ -1,8 +1,9 @@
 /*
  * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
  */
-package com.veneni.java;
+package com.veneni.java.transformer;
 
+import com.veneni.java.ast.AstComment;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,28 +16,12 @@ import java.util.List;
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class AstCommentTransformer {
+public class CommentTransformer extends BaseTransformer {
 
     /**
      * Stores the string builder.
      */
     private final StringBuilder stringBuilder = new StringBuilder();
-
-    /**
-     * Utility method to drain the StringBuilder back into a list.
-     *
-     * @param stringBuilder the string builder to drain.
-     * @return the list.
-     */
-    private List drainStringBuilderToList(StringBuilder stringBuilder) {
-        ArrayList result = new ArrayList();
-        if (stringBuilder.length() > 0) {
-            for (int i = 0; i < stringBuilder.length(); i++) {
-                result.add(stringBuilder.charAt(i));
-            }
-        }
-        return result;
-    }
 
     /**
      * Transform.

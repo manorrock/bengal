@@ -1,8 +1,10 @@
 /*
  * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
  */
-package com.veneni.java;
+package com.veneni.java.transformer;
 
+import com.veneni.java.ast.AstComment;
+import com.veneni.java.transformer.CommentTransformer;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertFalse;
@@ -10,18 +12,18 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * The JUnit tests for the AstCommentTransformer.
+ * The JUnit tests for the CommentTransformer.
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class AstCommentTransformerTest {
+public class CommentTransformerTest {
 
     /**
      * Test transform method.
      */
     @Test
     public void testTransform() {
-        AstCommentTransformer transformer = new AstCommentTransformer();
+        CommentTransformer transformer = new CommentTransformer();
         List output = transformer.transform(new ArrayList());
         assertTrue(output.isEmpty());
     }
@@ -31,7 +33,7 @@ public class AstCommentTransformerTest {
      */
     @Test
     public void testTransform2() {
-        AstCommentTransformer transformer = new AstCommentTransformer();
+        CommentTransformer transformer = new CommentTransformer();
         ArrayList input = new ArrayList();
         input.add('/');
         List output = transformer.transform(input);
@@ -44,7 +46,7 @@ public class AstCommentTransformerTest {
      */
     @Test
     public void testTransform3() {
-        AstCommentTransformer transformer = new AstCommentTransformer();
+        CommentTransformer transformer = new CommentTransformer();
         ArrayList input = new ArrayList();
         input.add('/');
         input.add('*');
@@ -59,7 +61,7 @@ public class AstCommentTransformerTest {
      */
     @Test
     public void testTransform4() {
-        AstCommentTransformer transformer = new AstCommentTransformer();
+        CommentTransformer transformer = new CommentTransformer();
         ArrayList input = new ArrayList();
         input.add('/');
         input.add('*');
@@ -75,7 +77,7 @@ public class AstCommentTransformerTest {
      */
     @Test
     public void testTransform5() {
-        AstCommentTransformer transformer = new AstCommentTransformer();
+        CommentTransformer transformer = new CommentTransformer();
         ArrayList input = new ArrayList();
         input.add('*');
         List output = transformer.transform(input);
@@ -88,7 +90,7 @@ public class AstCommentTransformerTest {
      */
     @Test
     public void testTransform6() {
-        AstCommentTransformer transformer = new AstCommentTransformer();
+        CommentTransformer transformer = new CommentTransformer();
         ArrayList input = new ArrayList();
         input.add('/');
         input.add('-');
@@ -103,7 +105,7 @@ public class AstCommentTransformerTest {
      */
     @Test
     public void testTransform7() {
-        AstCommentTransformer transformer = new AstCommentTransformer();
+        CommentTransformer transformer = new CommentTransformer();
         ArrayList input = new ArrayList();
         input.add("this is a string which will not be parsed");
         List output = transformer.transform(input);
