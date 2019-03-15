@@ -12,7 +12,7 @@ import org.junit.Test;
  * 
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class MethodEmitterIT {
+public class MethodEmitterTest {
     
     /**
      * Test emit method.

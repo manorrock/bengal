@@ -3,6 +3,9 @@
  */
 package com.veneni.java.ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * An AstObject.
  * 
@@ -10,6 +13,11 @@ package com.veneni.java.ast;
  */
 public class AstObject {
 
+    /**
+     * Stores the methods.
+     */
+    private List<AstMethod> methods;
+    
     /**
      * Stores the name.
      */
@@ -27,7 +35,17 @@ public class AstObject {
      * @param name the name. 
      */
     public AstObject(String name) {
+        this.methods = new ArrayList<>();
         this.name = name;
+    }
+    
+    /**
+     * Get the methods.
+     * 
+     * @return the methods.
+     */
+    public List<AstMethod> getMethods() {
+        return methods;
     }
     
     /**
@@ -37,5 +55,23 @@ public class AstObject {
      */
     public String getName() {
         return name;
+    }
+    
+    /**
+     * Set the methods.
+     * 
+     * @param methods the methods.
+     */
+    public void setMethods(List<AstMethod> methods) {
+        this.methods = methods;
+    }
+    
+    /**
+     * Set the name.
+     * 
+     * @param name the name.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

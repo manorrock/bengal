@@ -3,6 +3,7 @@
  */
 package com.veneni.java.emitter;
 
+import com.veneni.java.ast.AstMethod;
 import com.veneni.java.ast.AstObject;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -12,7 +13,7 @@ import org.junit.Test;
  * 
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class EmitterIT {
+public class EmitterTest {
     
     /**
      * Test emit method.
@@ -23,6 +24,19 @@ public class EmitterIT {
         String result = emitter.emit(new AstObject("MyObject"));
         assertTrue(result.contains("public class "));
         assertTrue(result.contains("MyObject"));
-        System.out.println(result);
+    }
+    
+    /**
+     * Test emit method.
+     */
+    @Test
+    public void testEmit2() {
+        AstObject object = new AstObject("MyObject");
+        object.getMethods().add(new AstMethod("myMethod"));
+        Emitter emitter = new Emitter();
+        String result = emitter.emit(object);
+        assertTrue(result.contains("public class "));
+        assertTrue(result.contains("public void myMethod"));
+        assertTrue(result.contains("MyObject"));
     }
 }
