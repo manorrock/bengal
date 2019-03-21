@@ -4,7 +4,6 @@
 package com.veneni.java.transformer;
 
 import com.veneni.java.ast.AstComment;
-import com.veneni.java.transformer.CommentTransformer;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertFalse;

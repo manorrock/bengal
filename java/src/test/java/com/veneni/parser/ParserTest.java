@@ -1,0 +1,35 @@
+/*
+ * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
+ */
+package com.veneni.parser;
+
+import com.veneni.java.ast.AstComment;
+import java.util.ArrayList;
+import java.util.List;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+
+/**
+ * The JUnit tests for the Parser class.
+ * 
+ * @author Manfred Riem (mriem@veneni.com)
+ */
+public class ParserTest {
+    
+    /**
+     * Test parse method.
+     */
+    @Test
+    public void testParse() {
+        ArrayList input = new ArrayList();
+        input.add('/');
+        input.add('*');
+        input.add('*');
+        input.add('/');
+        Parser parser = new Parser();
+        Object result = parser.parse(input);
+        assertTrue(result instanceof List);
+        List list = (List) result;
+        assertTrue(list.get(0) instanceof AstComment);
+    }
+}
