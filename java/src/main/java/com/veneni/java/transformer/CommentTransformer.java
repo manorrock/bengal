@@ -46,6 +46,7 @@ public class CommentTransformer extends BaseTransformer {
                 }
                 if (stringBuilder.length() > 0 && stringBuilder.toString().endsWith("*/")) {
                     result.add(new AstComment(stringBuilder.toString()));
+                    stringBuilder.setLength(0);
                 }
             } else {
                 result.addAll(drainStringBuilderToList(stringBuilder));

@@ -3,6 +3,7 @@
  */
 package com.veneni.parser;
 
+import com.veneni.java.ast.AstCharacter;
 import com.veneni.java.ast.AstComment;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,4 +33,25 @@ public class ParserTest {
         List list = (List) result;
         assertTrue(list.get(0) instanceof AstComment);
     }
+    
+    /**
+     * Test parse method.
+     */
+    @Test
+    public void testParse2() {
+        ArrayList input = new ArrayList();
+        input.add('/');
+        input.add('*');
+        input.add('*');
+        input.add('/');
+        input.add('\'');
+        input.add('a');
+        input.add('\'');
+        Parser parser = new Parser();
+        Object result = parser.parse(input);
+        assertTrue(result instanceof List);
+        List list = (List) result;
+        assertTrue(list.get(0) instanceof AstComment);
+        assertTrue(list.get(1) instanceof AstCharacter);
+    }    
 }

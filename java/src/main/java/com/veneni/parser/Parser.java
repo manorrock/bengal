@@ -3,6 +3,7 @@
  */
 package com.veneni.parser;
 
+import com.veneni.java.transformer.CharacterTransformer;
 import com.veneni.java.transformer.CommentTransformer;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class Parser {
         Object result;
         CommentTransformer commentTransformer = new CommentTransformer();
         result = commentTransformer.transform(input);
+        CharacterTransformer characterTransformer = new CharacterTransformer();
+        result = characterTransformer.transform((List) result);
         return result;
     }
 }
