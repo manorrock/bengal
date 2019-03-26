@@ -5,6 +5,7 @@ package com.veneni.parser;
 
 import com.veneni.java.transformer.CharacterTransformer;
 import com.veneni.java.transformer.CommentTransformer;
+import com.veneni.java.transformer.StringTransformer;
 import java.util.List;
 
 /**
@@ -26,6 +27,8 @@ public class Parser {
         result = commentTransformer.transform(input);
         CharacterTransformer characterTransformer = new CharacterTransformer();
         result = characterTransformer.transform((List) result);
+        StringTransformer stringTransformer = new StringTransformer();
+        result = stringTransformer.transform((List) result);
         return result;
     }
 }
