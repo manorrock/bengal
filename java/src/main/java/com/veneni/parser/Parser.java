@@ -6,6 +6,9 @@ package com.veneni.parser;
 import com.veneni.java.transformer.CharacterTransformer;
 import com.veneni.java.transformer.CommentTransformer;
 import com.veneni.java.transformer.StringTransformer;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +17,35 @@ import java.util.List;
  * @author Manfred Riem (mriem@veneni.com)
  */
 public class Parser {
+    
+    /**
+     * Main method.
+     * 
+     * @param arguments the arguments.
+     * @throws Exception when an error occurs.
+     */
+    public static void main(String[] arguments) throws Exception {
+        Parser parser = new Parser();
+        parser.parse(arguments[0]);
+    }
+    
+    /**
+     * Parse.
+     * 
+     * @param filename the filename.
+     * @return the output.
+     * @throws Exception when an error occurs.
+     */
+    public Object parse(String filename) throws Exception {
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        ArrayList list = new ArrayList();
+        int read = reader.read();
+        while(read != -1) {
+            list.add((char) read);
+            read = reader.read();
+        }
+        return parse(list);
+    }
 
     /**
      * Parse.

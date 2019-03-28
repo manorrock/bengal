@@ -79,5 +79,17 @@ public class ParserTest {
         assertTrue(list.get(0) instanceof AstComment);
         assertTrue(list.get(1) instanceof AstCharacter);
         assertTrue(list.get(2) instanceof AstString);
-    } 
+    }
+    
+    /**
+     * Test parse method.
+     * 
+     * @throws Exception when an error occurs.
+     */
+    @Test
+    public void testParse4() throws Exception {
+        Parser parser = new Parser();
+        List result = (List) parser.parse("src/test/veneni/Comment.m");
+        assertTrue(result.get(0) instanceof AstComment);
+    }
 }
