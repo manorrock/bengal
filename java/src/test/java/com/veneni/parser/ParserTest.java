@@ -5,6 +5,7 @@ package com.veneni.parser;
 
 import com.veneni.java.ast.AstCharacter;
 import com.veneni.java.ast.AstComment;
+import com.veneni.java.ast.AstKeyword;
 import com.veneni.java.ast.AstString;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,11 @@ import org.junit.Test;
 
 /**
  * The JUnit tests for the Parser class.
- * 
+ *
  * @author Manfred Riem (mriem@veneni.com)
  */
 public class ParserTest {
-    
+
     /**
      * Test parse method.
      */
@@ -34,7 +35,7 @@ public class ParserTest {
         List list = (List) result;
         assertTrue(list.get(0) instanceof AstComment);
     }
-    
+
     /**
      * Test parse method.
      */
@@ -54,8 +55,8 @@ public class ParserTest {
         List list = (List) result;
         assertTrue(list.get(0) instanceof AstComment);
         assertTrue(list.get(1) instanceof AstCharacter);
-    } 
-    
+    }
+
     /**
      * Test parse method.
      */
@@ -80,10 +81,10 @@ public class ParserTest {
         assertTrue(list.get(1) instanceof AstCharacter);
         assertTrue(list.get(2) instanceof AstString);
     }
-    
+
     /**
      * Test parse method.
-     * 
+     *
      * @throws Exception when an error occurs.
      */
     @Test
@@ -91,5 +92,17 @@ public class ParserTest {
         Parser parser = new Parser();
         List result = (List) parser.parse("src/test/veneni/Comment.m");
         assertTrue(result.get(0) instanceof AstComment);
+    }
+
+    /**
+     * Test parse method.
+     *
+     * @throws Exception when an error occurs.
+     */
+    @Test
+    public void testParse5() throws Exception {
+        Parser parser = new Parser();
+        List result = (List) parser.parse("src/test/veneni/Class.m");
+        assertTrue(result.get(0) instanceof AstKeyword);
     }
 }

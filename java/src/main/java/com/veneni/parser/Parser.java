@@ -5,6 +5,7 @@ package com.veneni.parser;
 
 import com.veneni.java.transformer.CharacterTransformer;
 import com.veneni.java.transformer.CommentTransformer;
+import com.veneni.java.transformer.KeywordTransformer;
 import com.veneni.java.transformer.StringTransformer;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -61,6 +62,8 @@ public class Parser {
         result = characterTransformer.transform((List) result);
         StringTransformer stringTransformer = new StringTransformer();
         result = stringTransformer.transform((List) result);
+        KeywordTransformer keyWordTransformer = new KeywordTransformer("class");
+        result = keyWordTransformer.transform((List) result);
         return result;
     }
 }
