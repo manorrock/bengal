@@ -62,8 +62,10 @@ public class Parser {
         result = characterTransformer.transform((List) result);
         StringTransformer stringTransformer = new StringTransformer();
         result = stringTransformer.transform((List) result);
-        KeywordTransformer keyWordTransformer = new KeywordTransformer("class");
-        result = keyWordTransformer.transform((List) result);
+        KeywordTransformer objectKeywordTransformer = new KeywordTransformer("object");
+        result = objectKeywordTransformer.transform((List) result);
+        KeywordTransformer methodKeywordTransformer = new KeywordTransformer("method");
+        result = methodKeywordTransformer.transform((List) result);
         return result;
     }
 }

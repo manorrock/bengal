@@ -102,7 +102,19 @@ public class ParserTest {
     @Test
     public void testParse5() throws Exception {
         Parser parser = new Parser();
-        List result = (List) parser.parse("src/test/veneni/Class.m");
+        List result = (List) parser.parse("src/test/veneni/Object.m");
+        assertTrue(result.get(0) instanceof AstKeyword);
+    }
+
+    /**
+     * Test parse method.
+     *
+     * @throws Exception when an error occurs.
+     */
+    @Test
+    public void testParse6() throws Exception {
+        Parser parser = new Parser();
+        List result = (List) parser.parse("src/test/veneni/Method.m");
         assertTrue(result.get(0) instanceof AstKeyword);
     }
 }
