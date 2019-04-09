@@ -68,6 +68,8 @@ public class Parser {
         result = methodKeywordTransformer.transform((List) result);
         KeywordTransformer ifKeywordTransformer = new KeywordTransformer("if");
         result = ifKeywordTransformer.transform((List) result);
+        KeywordTransformer thenKeywordTransformer = new KeywordTransformer("then");
+        result = thenKeywordTransformer.transform((List) result);
         return result;
     }
 }
