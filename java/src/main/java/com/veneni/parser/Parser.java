@@ -72,6 +72,8 @@ public class Parser {
         result = thenKeywordTransformer.transform((List) result);
         KeywordTransformer elseKeywordTransformer = new KeywordTransformer("else");
         result = elseKeywordTransformer.transform((List) result);
+        KeywordTransformer whileKeywordTransformer = new KeywordTransformer("else");
+        result = whileKeywordTransformer.transform((List) result);
         return result;
     }
 }
