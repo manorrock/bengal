@@ -76,6 +76,8 @@ public class Parser {
         result = whileKeywordTransformer.transform((List) result);
         KeywordTransformer doKeywordTransformer = new KeywordTransformer("do");
         result = doKeywordTransformer.transform((List) result);
+        KeywordTransformer forKeywordTransformer = new KeywordTransformer("for");
+        result = forKeywordTransformer.transform((List) result);
         return result;
     }
 }
