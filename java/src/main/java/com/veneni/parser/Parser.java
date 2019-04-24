@@ -78,6 +78,8 @@ public class Parser {
         result = doKeywordTransformer.transform((List) result);
         KeywordTransformer forKeywordTransformer = new KeywordTransformer("for");
         result = forKeywordTransformer.transform((List) result);
+        KeywordTransformer nativeKeywordTransformer = new KeywordTransformer("native");
+        result = nativeKeywordTransformer.transform((List) result);
         return result;
     }
 }

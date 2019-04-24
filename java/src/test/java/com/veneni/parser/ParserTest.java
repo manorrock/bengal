@@ -189,4 +189,16 @@ public class ParserTest {
         List result = (List) parser.parse("src/test/veneni/For.m");
         assertTrue(result.get(0) instanceof AstKeyword);
     }
+
+    /**
+     * Test parse method.
+     *
+     * @throws Exception when an error occurs.
+     */
+    @Test
+    public void testParse13() throws Exception {
+        Parser parser = new Parser();
+        List result = (List) parser.parse("src/test/veneni/Native.m");
+        assertTrue(result.get(0) instanceof AstKeyword);
+    }
 }
