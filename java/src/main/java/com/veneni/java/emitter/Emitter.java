@@ -14,6 +14,20 @@ import com.veneni.java.ast.AstObject;
 public class Emitter {
     
     /**
+     * Emit any object.
+     * 
+     * @param object the object.
+     * @return the Java equivalent.
+     */
+    public String emit(Object object) {
+        String result = "";
+        if (object instanceof AstObject) {
+            result = emit((AstObject) object);
+        }
+        return result;
+    }
+    
+    /**
      * Emit the AstObject.
      * 
      * @param object the AstObject.
