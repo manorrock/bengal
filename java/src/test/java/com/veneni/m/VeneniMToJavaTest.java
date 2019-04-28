@@ -5,7 +5,7 @@ package com.veneni.m;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -26,6 +26,6 @@ public class VeneniMToJavaTest {
             "src/test/veneni/m/HelloWorld.m", 
             "target/HelloWorld.java"});
         String contents = new String(Files.readAllBytes(Paths.get("target/HelloWorld.java")));
-        assertFalse(contents.contains("public class HelloWorld"));
+        assertTrue(contents.contains(" * The Veneni-M Hello World example"));
     }
 }

@@ -1,9 +1,10 @@
 /*
  * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
  */
-package com.veneni.java.transformer;
+package com.veneni.m.transformer;
 
 import com.veneni.java.ast.AstComment;
+import com.veneni.java.transformer.BaseTransformer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class CommentTransformer extends BaseTransformer {
                     result.add(object);
                 }
                 if (stringBuilder.length() > 0 && stringBuilder.toString().endsWith("*/")) {
-                    result.add(new AstComment(stringBuilder.toString()));
+                    result.add(new AstComment(stringBuilder.substring(2, stringBuilder.length() - 2)));
                     stringBuilder.setLength(0);
                 }
             } else {

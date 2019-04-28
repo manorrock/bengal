@@ -4,7 +4,7 @@
 package com.veneni.parser;
 
 import com.veneni.java.transformer.CharacterTransformer;
-import com.veneni.java.transformer.CommentTransformer;
+import com.veneni.m.transformer.CommentTransformer;
 import com.veneni.java.transformer.KeywordTransformer;
 import com.veneni.java.transformer.StringTransformer;
 import java.io.BufferedReader;

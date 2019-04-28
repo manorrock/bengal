@@ -3,8 +3,10 @@
  */
 package com.veneni.java.emitter;
 
+import com.veneni.java.ast.AstComment;
 import com.veneni.java.ast.AstMethod;
 import com.veneni.java.ast.AstObject;
+import java.util.List;
 
 /**
  * The Java emitter.
@@ -20,11 +22,20 @@ public class Emitter {
      * @return the Java equivalent.
      */
     public String emit(Object object) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         if (object instanceof AstObject) {
-            result = emit((AstObject) object);
+            result.append(emit((AstObject) object));
         }
-        return result;
+        if (object instanceof AstComment) {
+            result.append(emitComment((AstComment) object));
+        }
+        if (object instanceof List) {
+            List list = (List) object;
+            list.forEach((item) -> {
+                result.append(emit(item)).append("\n");
+            });
+        }
+        return result.toString();
     }
     
     /**
@@ -43,6 +54,18 @@ public class Emitter {
             builder.append("\n");
         }
         builder.append("}");
+        return builder.toString();
+    }
+    
+    /**
+     * Emit a comment.
+     * 
+     * @param comment the comment.
+     * @return the Java comment.
+     */
+    public String emitComment(AstComment comment) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("/*").append(comment.getComment()).append("*/");
         return builder.toString();
     }
 }
