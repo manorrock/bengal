@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The MOperator transformer.
+ * The MKeyword transformer.
  *
  * <p>
- * This transformer will transform characters into MOperator objects.
+ *  This transformer will take characters to MKeyword objects.
  * </p>
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class MOperatorTransformer extends BaseTransformer {
+public class MKeywordTransformer extends BaseTransformer {
 
     /**
      * Stores the string builder.
@@ -23,17 +23,17 @@ public class MOperatorTransformer extends BaseTransformer {
     private final StringBuilder stringBuilder;
 
     /**
-     * Stores the operator.
+     * Stores the keyword.
      */
-    private final MOperator operator;
+    private final String keyword;
 
     /**
      * Constructor.
      *
-     * @param operator the operator.
+     * @param keyword the keyword.
      */
-    public MOperatorTransformer(MOperator operator) {
-        this.operator = operator;
+    public MKeywordTransformer(String keyword) {
+        this.keyword = keyword;
         this.stringBuilder = new StringBuilder();
     }
 
@@ -49,10 +49,11 @@ public class MOperatorTransformer extends BaseTransformer {
             if (object instanceof Character) {
                 Character character = (Character) object;
                 stringBuilder.append(character.charValue());
-                if (operator.getOperator().equals(stringBuilder.toString())) {
+                if (keyword.equals(stringBuilder.toString())) {
+                    MKeyword match = new MKeyword(keyword);
                     stringBuilder.setLength(0);
-                    result.add(operator);
-                } else if (!operator.getOperator().startsWith(stringBuilder.toString())) {
+                    result.add(match);
+                } else if (!keyword.startsWith(stringBuilder.toString())) {
                     result.addAll(drainStringBuilderToList(stringBuilder));
                     stringBuilder.setLength(0);
                 }

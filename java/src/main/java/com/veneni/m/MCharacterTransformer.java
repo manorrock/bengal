@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The MOperator transformer.
+ * The MCharacter transformer.
  *
  * <p>
- * This transformer will transform characters into MOperator objects.
+ * This transformer will transform characters into MCharacter objects.
  * </p>
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class MOperatorTransformer extends BaseTransformer {
+public class MCharacterTransformer extends BaseTransformer {
 
     /**
      * Stores the string builder.
@@ -23,17 +23,9 @@ public class MOperatorTransformer extends BaseTransformer {
     private final StringBuilder stringBuilder;
 
     /**
-     * Stores the operator.
-     */
-    private final MOperator operator;
-
-    /**
      * Constructor.
-     *
-     * @param operator the operator.
      */
-    public MOperatorTransformer(MOperator operator) {
-        this.operator = operator;
+    public MCharacterTransformer() {
         this.stringBuilder = new StringBuilder();
     }
 
@@ -47,16 +39,24 @@ public class MOperatorTransformer extends BaseTransformer {
         ArrayList result = new ArrayList();
         input.forEach((object) -> {
             if (object instanceof Character) {
-                Character character = (Character) object;
-                stringBuilder.append(character.charValue());
-                if (operator.getOperator().equals(stringBuilder.toString())) {
+                char character = (Character) object;
+                if (stringBuilder.length() > 0 && character != '\'') {
+                    stringBuilder.append(character);
+                } else if (stringBuilder.length() > 0 && character == '\'') {
+                    MCharacter astCharacter = new MCharacter(
+                            stringBuilder.toString().substring(1));
+                    result.add(astCharacter);
                     stringBuilder.setLength(0);
-                    result.add(operator);
-                } else if (!operator.getOperator().startsWith(stringBuilder.toString())) {
+                } else if (character == '\'') {
+                    stringBuilder.append(character);
+                } else {
+                    result.add(character);
+                }
+            } else {
+                if (stringBuilder.length() > 0) {
                     result.addAll(drainStringBuilderToList(stringBuilder));
                     stringBuilder.setLength(0);
                 }
-            } else {
                 result.add(object);
             }
         });
