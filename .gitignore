@@ -1,7 +1,7 @@
 .classpath
 .project
 .settings
-*/target
-/transpiler/nbproject/
-/veneni-message/nbproject/
-/java/nbproject/
+.vscode
+target/
+nbproject/
+
