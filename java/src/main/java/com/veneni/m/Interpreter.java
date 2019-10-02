@@ -4,12 +4,10 @@
 package com.veneni.m;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 
 /**
@@ -30,11 +28,17 @@ public class Interpreter {
     private PrintWriter outputWriter;
 
     /**
+     * Stores the parser.
+     */
+    private Parser parser;
+
+    /**
      * Constructor.
      */
     public Interpreter(InputStream inputStream, OutputStream outputStream) {
         this.inputReader = new BufferedReader(new InputStreamReader(inputStream));
         this.outputWriter = new PrintWriter(outputStream, true);
+        this.parser = new Parser();
     }
 
     /**
@@ -54,7 +58,8 @@ public class Interpreter {
         for(;;) {
             try {
                 String line = inputReader.readLine();
-                outputWriter.println(line);
+                Object object = parser.parse(line);
+                outputWriter.println(object);
             } catch(IOException ioe) {
                 ioe.printStackTrace(System.err);
             }
