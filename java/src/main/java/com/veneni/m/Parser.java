@@ -3,6 +3,11 @@
  */
 package com.veneni.m;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
 /**
  * The parser.
  *
@@ -11,15 +16,51 @@ package com.veneni.m;
 public class Parser {
 
     /**
+     * Parse.
+     *
+     * @param filename the filename.
+     * @return the output.
+     */
+    public Object parseFile(String filename) {
+        Object result;
+        try {
+            String contents = new String(Files.readAllBytes(Paths.get(filename)));
+            result =  parse(contents);
+        } catch (IOException ioe) {
+            result = ioe;
+        }
+        return result;
+    }
+
+    /**
      * Parse the input.
      *
      * @param input the input.
      * @return the output.
      */
     public Object parse(String input) {
-        if (input.equals("object")) {
-            return Keyword.OBJECT;
+        Object result;
+        ArrayList<Object> list = new ArrayList<>();
+        KeywordTransformer keywordTransformer = new KeywordTransformer();
+        for (int i = 0; i < input.length(); i++) {
+            Object processed = keywordTransformer.process(input.charAt(i));
+            if (processed != null) {
+                list.add(processed);
+            }
         }
-        return input;
+        OperatorTransformer operatorTransformer = new OperatorTransformer();
+        ArrayList<Object> outputList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            Object processed = operatorTransformer.process(list.get(i));
+            if (processed != null) {
+                outputList.add(processed);
+            }
+        }
+        if (list.size() == 1) {
+            result = outputList.get(0);
+        } else {
+            result = outputList;
+        }
+        return result;
     }
 }

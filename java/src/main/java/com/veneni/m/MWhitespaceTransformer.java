@@ -39,9 +39,9 @@ public class MWhitespaceTransformer {
     public List transform(List input) {
         ArrayList result = new ArrayList();
         input.forEach((object) -> {
-            if (object instanceof Character) {
-                Character character = (Character) object;
-                if (!Character.isWhitespace(character)) {
+            if (object instanceof java.lang.Character) {
+                java.lang.Character character = (java.lang.Character) object;
+                if (!java.lang.Character.isWhitespace(character)) {
                     result.add(character);
                 } else {
                     if (stringBuilder.length() > 0) {

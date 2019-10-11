@@ -54,28 +54,8 @@ public class MParser {
         Object result;
         MCommentTransformer commentTransformer = new MCommentTransformer();
         result = commentTransformer.transform(input);
-        MCharacterTransformer characterTransformer = new MCharacterTransformer();
-        result = characterTransformer.transform((List) result);
         MStringTransformer stringTransformer = new MStringTransformer();
         result = stringTransformer.transform((List) result);
-        MKeywordTransformer objectKeywordTransformer = new MKeywordTransformer("object");
-        result = objectKeywordTransformer.transform((List) result);
-        MKeywordTransformer methodKeywordTransformer = new MKeywordTransformer("method");
-        result = methodKeywordTransformer.transform((List) result);
-        MKeywordTransformer ifKeywordTransformer = new MKeywordTransformer("if");
-        result = ifKeywordTransformer.transform((List) result);
-        MKeywordTransformer thenKeywordTransformer = new MKeywordTransformer("then");
-        result = thenKeywordTransformer.transform((List) result);
-        MKeywordTransformer elseKeywordTransformer = new MKeywordTransformer("else");
-        result = elseKeywordTransformer.transform((List) result);
-        MKeywordTransformer whileKeywordTransformer = new MKeywordTransformer("while");
-        result = whileKeywordTransformer.transform((List) result);
-        MKeywordTransformer doKeywordTransformer = new MKeywordTransformer("do");
-        result = doKeywordTransformer.transform((List) result);
-        MKeywordTransformer forKeywordTransformer = new MKeywordTransformer("for");
-        result = forKeywordTransformer.transform((List) result);
-        MKeywordTransformer nativeKeywordTransformer = new MKeywordTransformer("native");
-        result = nativeKeywordTransformer.transform((List) result);
         return result;
     }
 }
