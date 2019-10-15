@@ -8,22 +8,22 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * The JUnit tests for the AstCharacterTransformer class.
+ * The JUnit tests for the AstStringTransformer class.
  *
  * @author Manfred Riem (mriem@manorrock.com)
  */
-public class CharTransformerTest {
+public class StringTransformerTest {
 
     /**
      * Test process method.
      */
     @Test
     public void testProcess() {
-        AstCharacterTransformer charTransformer = new AstCharacterTransformer();
-        charTransformer.process('\'');
-        charTransformer.process('a');
-        Object result = charTransformer.process('\'');
-        assertTrue(result instanceof AstCharacter);
+        AstStringTransformer transformer = new AstStringTransformer();
+        transformer.process('\"');
+        transformer.process('a');
+        Object result = transformer.process('\"');
+        assertTrue(result instanceof AstString);
     }
 
     /**
@@ -31,8 +31,8 @@ public class CharTransformerTest {
      */
     @Test
     public void testProces2() {
-        AstCharacterTransformer charTransformer = new AstCharacterTransformer();
-        Object result = charTransformer.process("this_is_a_string");
+        AstStringTransformer transformer = new AstStringTransformer();
+        Object result = transformer.process("this_is_a_string");
         assertTrue(result instanceof String);
         assertEquals("this_is_a_string", result);
     }

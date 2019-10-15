@@ -3,31 +3,31 @@
  */
 package com.veneni.m;
 
-import static com.veneni.m.Keyword.DO;
-import static com.veneni.m.Keyword.ELSE;
-import static com.veneni.m.Keyword.FALSE;
-import static com.veneni.m.Keyword.FOR;
-import static com.veneni.m.Keyword.IF;
-import static com.veneni.m.Keyword.METHOD;
-import static com.veneni.m.Keyword.NATIVE;
-import static com.veneni.m.Keyword.NIL;
-import static com.veneni.m.Keyword.OBJECT;
-import static com.veneni.m.Keyword.THEN;
-import static com.veneni.m.Keyword.TRUE;
-import static com.veneni.m.Keyword.WHILE;
+import static com.veneni.m.AstKeyword.DO;
+import static com.veneni.m.AstKeyword.ELSE;
+import static com.veneni.m.AstKeyword.FALSE;
+import static com.veneni.m.AstKeyword.FOR;
+import static com.veneni.m.AstKeyword.IF;
+import static com.veneni.m.AstKeyword.METHOD;
+import static com.veneni.m.AstKeyword.NATIVE;
+import static com.veneni.m.AstKeyword.NIL;
+import static com.veneni.m.AstKeyword.OBJECT;
+import static com.veneni.m.AstKeyword.THEN;
+import static com.veneni.m.AstKeyword.TRUE;
+import static com.veneni.m.AstKeyword.WHILE;
 
 /**
- * A transformer that looks for keywords and transforms them into Keyword
+ * A transformer that looks for keywords and transforms them into AstKeyword
  * instances.
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class KeywordTransformer {
+public class AstKeywordTransformer {
 
     /**
      * Stores the array of keyword enum values.
      */
-    private final Keyword[] enums = {
+    private final AstKeyword[] enums = {
         OBJECT,
         METHOD,
         IF,
@@ -68,7 +68,7 @@ public class KeywordTransformer {
     /**
      * Constructor.
      */
-    public KeywordTransformer() {
+    public AstKeywordTransformer() {
         this.buffer = new StringBuilder();
     }
 

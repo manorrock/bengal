@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 /**
- * The JUnit tests for the OperatorTransformer class.
+ * The JUnit tests for the AstOperatorTransformer class.
  *
  * @author Manfred Riem (mriem@manorrock.com)
  */
@@ -19,10 +19,10 @@ public class OperatorTransformerTest {
      */
     @Test
     public void testProcess() {
-        OperatorTransformer transformer = new OperatorTransformer();
+        AstOperatorTransformer transformer = new AstOperatorTransformer();
         Object result = transformer.process('(');
         assertNotNull(result);
-        assertEquals(result, Operator.LEFT_PARENTHESIS);
+        assertEquals(result, AstOperator.LEFT_PARENTHESIS);
     }
 
     /**
@@ -30,10 +30,10 @@ public class OperatorTransformerTest {
      */
     @Test
     public void testProcess2() {
-        OperatorTransformer transformer = new OperatorTransformer();
+        AstOperatorTransformer transformer = new AstOperatorTransformer();
         Object result = transformer.process(')');
         assertNotNull(result);
-        assertEquals(result, Operator.RIGHT_PARENTHESIS);
+        assertEquals(result, AstOperator.RIGHT_PARENTHESIS);
     }
 
     /**
@@ -41,10 +41,10 @@ public class OperatorTransformerTest {
      */
     @Test
     public void testProcess3() {
-        OperatorTransformer transformer = new OperatorTransformer();
+        AstOperatorTransformer transformer = new AstOperatorTransformer();
         Object result = transformer.process(';');
         assertNotNull(result);
-        assertEquals(result, Operator.SEMICOLON);
+        assertEquals(result, AstOperator.SEMICOLON);
     }
 
     /**
@@ -52,10 +52,10 @@ public class OperatorTransformerTest {
      */
     @Test
     public void testProcess4() {
-        OperatorTransformer transformer = new OperatorTransformer();
+        AstOperatorTransformer transformer = new AstOperatorTransformer();
         Object result = transformer.process('{');
         assertNotNull(result);
-        assertEquals(result, Operator.LEFT_CURLY_BRACKET);
+        assertEquals(result, AstOperator.LEFT_CURLY_BRACKET);
     }
 
     /**
@@ -63,10 +63,10 @@ public class OperatorTransformerTest {
      */
     @Test
     public void testProcess5() {
-        OperatorTransformer transformer = new OperatorTransformer();
+        AstOperatorTransformer transformer = new AstOperatorTransformer();
         Object result = transformer.process('}');
         assertNotNull(result);
-        assertEquals(result, Operator.RIGHT_CURLY_BRACKET);
+        assertEquals(result, AstOperator.RIGHT_CURLY_BRACKET);
     }
 
     /**
@@ -74,10 +74,10 @@ public class OperatorTransformerTest {
      */
     @Test
     public void testProcess6() {
-        OperatorTransformer transformer = new OperatorTransformer();
+        AstOperatorTransformer transformer = new AstOperatorTransformer();
         Object result = transformer.process('.');
         assertNotNull(result);
-        assertEquals(result, Operator.DOT);
+        assertEquals(result, AstOperator.DOT);
     }
 
     /**
@@ -85,10 +85,10 @@ public class OperatorTransformerTest {
      */
     @Test
     public void testProcess7() {
-        OperatorTransformer transformer = new OperatorTransformer();
+        AstOperatorTransformer transformer = new AstOperatorTransformer();
         Object result = transformer.process('=');
         assertNotNull(result);
-        assertEquals(result, Operator.EQUALS);
+        assertEquals(result, AstOperator.EQUALS);
     }
 
     /**
@@ -96,7 +96,7 @@ public class OperatorTransformerTest {
      */
     @Test
     public void testProcess8() {
-        OperatorTransformer transformer = new OperatorTransformer();
+        AstOperatorTransformer transformer = new AstOperatorTransformer();
         Object result = transformer.process("this_is_a_string");
         assertNotNull(result);
         assertEquals(result, "this_is_a_string");

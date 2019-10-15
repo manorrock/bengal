@@ -4,11 +4,11 @@
 package com.veneni.m;
 
 /**
- * The enum containing all of the Veneni M operators.
+ * An AST operator (aka. the enum containing all of the Veneni M operators).
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public enum Operator {
+public enum AstOperator {
     /**
      * The left parenthesis operator.
      */

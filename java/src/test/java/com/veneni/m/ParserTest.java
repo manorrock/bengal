@@ -22,8 +22,8 @@ public class ParserTest {
     public void testParse() {
         Parser parser = new Parser();
         Object result = parser.parse("do");
-        assertTrue(result instanceof Keyword);
-        assertEquals(Keyword.DO, result);
+        assertTrue(result instanceof AstKeyword);
+        assertEquals(AstKeyword.DO, result);
     }
 
     /**
@@ -35,9 +35,9 @@ public class ParserTest {
         Object result = parser.parse("do {");
         assertTrue(result instanceof List);
         List list = (List) result;
-        assertEquals(Keyword.DO, list.get(0));
+        assertEquals(AstKeyword.DO, list.get(0));
         assertEquals(' ', list.get(1));
-        assertEquals(Operator.LEFT_CURLY_BRACKET, list.get(2));
+        assertEquals(AstOperator.LEFT_CURLY_BRACKET, list.get(2));
     }
     
     /**
@@ -47,7 +47,7 @@ public class ParserTest {
     public void testParseFile() {
         Parser parser = new Parser();
         Object result = parser.parseFile("src/test/veneni/Object.m");
-        assertEquals(Keyword.OBJECT, result);
+        assertEquals(AstKeyword.OBJECT, result);
     }
     
     /**
@@ -57,6 +57,6 @@ public class ParserTest {
     public void testParseFile2() {
         Parser parser = new Parser();
         Object result = parser.parseFile("src/test/veneni/Method.m");
-        assertEquals(Keyword.METHOD, result);
+        assertEquals(AstKeyword.METHOD, result);
     }
 }

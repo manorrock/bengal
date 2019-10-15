@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 /**
- * The JUnit tests for the KeywordTransformer class.
+ * The JUnit tests for the AstKeywordTransformer class.
  * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
@@ -19,7 +19,7 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         Object result = transformer.process('a');
         assertNotNull(result);
         assertEquals(result, 'a');
@@ -30,7 +30,7 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess2() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         Object result = transformer.process("this_is_a_string");
         assertNotNull(result);
         assertEquals(result, "this_is_a_string");
@@ -41,7 +41,7 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess3() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('o');
         transformer.process('b');
         transformer.process('j');
@@ -49,7 +49,7 @@ public class KeywordTransformerTest {
         transformer.process('c');
         Object result = transformer.process('t');
         assertNotNull(result);
-        assertEquals(result, Keyword.OBJECT);
+        assertEquals(result, AstKeyword.OBJECT);
     }
     
     /**
@@ -57,7 +57,7 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess4() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('m');
         transformer.process('e');
         transformer.process('t');
@@ -65,7 +65,7 @@ public class KeywordTransformerTest {
         transformer.process('o');
         Object result = transformer.process('d');
         assertNotNull(result);
-        assertEquals(result, Keyword.METHOD);
+        assertEquals(result, AstKeyword.METHOD);
     }
     
     /**
@@ -73,11 +73,11 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess5() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('i');
         Object result = transformer.process('f');
         assertNotNull(result);
-        assertEquals(result, Keyword.IF);
+        assertEquals(result, AstKeyword.IF);
     }
     
     /**
@@ -85,13 +85,13 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess6() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('t');
         transformer.process('h');
         transformer.process('e');
         Object result = transformer.process('n');
         assertNotNull(result);
-        assertEquals(result, Keyword.THEN);
+        assertEquals(result, AstKeyword.THEN);
     }
     
     /**
@@ -99,13 +99,13 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess7() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('e');
         transformer.process('l');
         transformer.process('s');
         Object result = transformer.process('e');
         assertNotNull(result);
-        assertEquals(result, Keyword.ELSE);
+        assertEquals(result, AstKeyword.ELSE);
     }
     
     /**
@@ -113,11 +113,11 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess8() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('d');
         Object result = transformer.process('o');
         assertNotNull(result);
-        assertEquals(result, Keyword.DO);
+        assertEquals(result, AstKeyword.DO);
     }
     
     /**
@@ -125,14 +125,14 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess9() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('w');
         transformer.process('h');
         transformer.process('i');
         transformer.process('l');
         Object result = transformer.process('e');
         assertNotNull(result);
-        assertEquals(result, Keyword.WHILE);
+        assertEquals(result, AstKeyword.WHILE);
     }
     
     /**
@@ -140,12 +140,12 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess10() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('f');
         transformer.process('o');
         Object result = transformer.process('r');
         assertNotNull(result);
-        assertEquals(Keyword.FOR, result);
+        assertEquals(AstKeyword.FOR, result);
     }
     
     /**
@@ -153,7 +153,7 @@ public class KeywordTransformerTest {
      */
     @Test
     public void testProcess11() {
-        KeywordTransformer transformer = new KeywordTransformer();
+        AstKeywordTransformer transformer = new AstKeywordTransformer();
         transformer.process('n');
         transformer.process('a');
         transformer.process('t');
@@ -161,6 +161,6 @@ public class KeywordTransformerTest {
         transformer.process('v');
         Object result = transformer.process('e');
         assertNotNull(result);
-        assertEquals(result, Keyword.NATIVE);
+        assertEquals(result, AstKeyword.NATIVE);
     }
 }

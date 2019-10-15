@@ -4,23 +4,23 @@
 package com.veneni.m;
 
 /**
- * A character.
- * 
+ * An AST string.
+ *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class Char {
+public class AstString {
 
     /**
      * Stores the string.
      */
-    private final String string;
-    
+    private String string;
+
     /**
      * Constructor.
-     * 
-     * @param string the string representation. 
+     *
+     * @param string the string.
      */
-    public Char(String string) {
+    public AstString(String string) {
         this.string = string;
     }
 }

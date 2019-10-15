@@ -3,26 +3,26 @@
  */
 package com.veneni.m;
 
-import static com.veneni.m.Operator.DOT;
-import static com.veneni.m.Operator.EQUALS;
-import static com.veneni.m.Operator.LEFT_CURLY_BRACKET;
-import static com.veneni.m.Operator.LEFT_PARENTHESIS;
-import static com.veneni.m.Operator.RIGHT_CURLY_BRACKET;
-import static com.veneni.m.Operator.RIGHT_PARENTHESIS;
-import static com.veneni.m.Operator.SEMICOLON;
+import static com.veneni.m.AstOperator.DOT;
+import static com.veneni.m.AstOperator.EQUALS;
+import static com.veneni.m.AstOperator.LEFT_CURLY_BRACKET;
+import static com.veneni.m.AstOperator.LEFT_PARENTHESIS;
+import static com.veneni.m.AstOperator.RIGHT_CURLY_BRACKET;
+import static com.veneni.m.AstOperator.RIGHT_PARENTHESIS;
+import static com.veneni.m.AstOperator.SEMICOLON;
 
 /**
- * A transformer that looks for operators and transforms them into Operator
+ * A transformer that looks for operators and transforms them into AstOperator
  * instances.
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class OperatorTransformer {
+public class AstOperatorTransformer {
 
     /**
      * Stores the array of operator enum values.
      */
-    private final Operator[] enums = {
+    private final AstOperator[] enums = {
         LEFT_PARENTHESIS,
         RIGHT_PARENTHESIS,
         SEMICOLON,
@@ -48,7 +48,7 @@ public class OperatorTransformer {
     /**
      * Constructor.
      */
-    public OperatorTransformer() {
+    public AstOperatorTransformer() {
     }
 
     /**

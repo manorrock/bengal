@@ -4,12 +4,12 @@
 package com.veneni.m;
 
 /**
- * A transformer that looks for characters and transforms them into Char
+ * A transformer that looks for strings and transforms them into AstString
  * instances.
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class CharTransformer {
+public class AstStringTransformer {
 
     /**
      * Stores the internal buffer.
@@ -19,7 +19,7 @@ public class CharTransformer {
     /**
      * Constructor.
      */
-    public CharTransformer() {
+    public AstStringTransformer() {
         this.buffer = new StringBuilder();
     }
 
@@ -34,10 +34,10 @@ public class CharTransformer {
         if (object instanceof Character) {
             buffer.append(object);
             String string = buffer.toString();
-            if (string.startsWith("'") && string.endsWith("'") && string.length() > 1) {
+            if (string.startsWith("\"") && string.endsWith("\"") && string.length() > 1) {
                 string = buffer.toString().substring(1);
                 string = string.substring(0, string.length() - 1);
-                result = new Char(string);
+                result = new AstString(string);
                 buffer.setLength(0);
             }
         } else {
