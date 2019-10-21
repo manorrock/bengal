@@ -3,7 +3,6 @@
  */
 package com.veneni.m.java;
 
-import com.veneni.m.MComment;
 import com.veneni.m.MMethod;
 import com.veneni.m.MObject;
 import java.util.List;
@@ -23,9 +22,6 @@ public class Emitter {
      */
     public String emit(Object object) {
         StringBuilder result = new StringBuilder();
-        if (object instanceof MComment) {
-            result.append(emitComment((MComment) object));
-        }
         if (object instanceof MMethod) {
             result.append(emitMethod((MMethod) object));
         }
@@ -39,18 +35,6 @@ public class Emitter {
             });
         }
         return result.toString();
-    }
-
-    /**
-     * Emit the MComment.
-     *
-     * @param comment the MComment.
-     * @return the Java comment.
-     */
-    public String emitComment(MComment comment) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("/*").append(comment.getComment()).append("*/");
-        return builder.toString();
     }
 
     /**

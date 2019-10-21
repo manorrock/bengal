@@ -51,11 +51,7 @@ public class MParser {
      * @return the output.
      */
     public Object parse(List<Object> input) {
-        Object result;
-        MCommentTransformer commentTransformer = new MCommentTransformer();
-        result = commentTransformer.transform(input);
-        MStringTransformer stringTransformer = new MStringTransformer();
-        result = stringTransformer.transform((List) result);
+        Object result = input;
         return result;
     }
 }
