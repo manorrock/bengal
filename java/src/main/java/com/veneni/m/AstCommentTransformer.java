@@ -39,6 +39,9 @@ public class AstCommentTransformer {
                 string = string.substring(0, string.length() - 2);
                 result = new AstComment(string);
                 buffer.setLength(0);
+            } else if (!string.startsWith("/")) {
+                result = string.charAt(0);
+                buffer.setLength(0);
             }
         } else {
             result = object;

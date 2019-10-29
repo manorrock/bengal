@@ -41,13 +41,6 @@ public class Parser {
     public Object parse(String input) {
         Object result;
         ArrayList<Object> list = new ArrayList<>();
-        AstKeywordTransformer keywordTransformer = new AstKeywordTransformer();
-        for (int i = 0; i < input.length(); i++) {
-            Object processed = keywordTransformer.process(input.charAt(i));
-            if (processed != null) {
-                list.add(processed);
-            }
-        }
         AstOperatorTransformer operatorTransformer = new AstOperatorTransformer();
         ArrayList<Object> outputList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {

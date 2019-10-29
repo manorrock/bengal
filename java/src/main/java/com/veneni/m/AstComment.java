@@ -23,4 +23,13 @@ public class AstComment {
     public AstComment(String string) {
         this.string = string;
     }
+    
+    /**
+     * Get the string.
+     * 
+     * @return the string.
+     */
+    public String getString() {
+        return string;
+    }
 }
