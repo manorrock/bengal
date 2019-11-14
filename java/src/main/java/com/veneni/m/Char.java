@@ -23,6 +23,15 @@ public class Char {
     public Char(char character) {
         this.character = character;
     }
+
+    /**
+     * Return the char representation.
+     * 
+     * @return the char representation.
+     */
+    public char toChar() {
+        return character;
+    }
     
     /**
      * Return the string representation.

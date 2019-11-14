@@ -4,11 +4,11 @@
 package com.veneni.m;
 
 /**
- * An AST whitespace.
+ * A comment.
  * 
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class AstWhitespace {
+public class Comment {
 
     /**
      * Stores the string.
@@ -20,7 +20,16 @@ public class AstWhitespace {
      * 
      * @param string the string representation. 
      */
-    public AstWhitespace(String string) {
+    public Comment(String string) {
         this.string = string;
+    }
+    
+    /**
+     * Get the string.
+     * 
+     * @return the string.
+     */
+    public String getString() {
+        return string;
     }
 }

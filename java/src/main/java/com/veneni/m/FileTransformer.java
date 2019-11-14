@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * A transformer that transforms a File instance to a list of Char instances.
+ * The Transformer that transforms a File instance to a list of Char instances.
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class FileTransformer {
+public class FileTransformer implements Transformer {
 
     /**
      * Transform.
@@ -21,6 +21,7 @@ public class FileTransformer {
      * @param input the input.
      * @return the output.
      */
+    @Override
     public Object transform(Object input) {
         Object result = input;
         if (input instanceof File) {
