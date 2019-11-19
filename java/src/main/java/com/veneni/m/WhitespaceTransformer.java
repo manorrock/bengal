@@ -6,7 +6,6 @@ package com.veneni.m;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import static jdk.nashorn.internal.objects.ArrayBufferView.buffer;
 
 /**
  * The Transformer that looks for Char instances and transforms them into

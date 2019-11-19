@@ -4,11 +4,11 @@
 package com.veneni.m;
 
 /**
- * An AST keyword (aka the enum containing all of the Veneni M keywords).
+ * A keyword.
  *
  * @author Manfred Riem (mriem@veneni.com)
  */
-public enum AstKeyword {
+public enum Keyword {
     /**
      * The "object" keyword.
      */
