@@ -25,6 +25,34 @@ public class Char {
     }
 
     /**
+     * Eguals.
+     * 
+     * @param object the object to compare.
+     * @return true if equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object object) {
+        boolean result = false;
+        if (object instanceof Char) {
+            Char compare = (Char) object;
+            result = compare.character == character;
+        }
+        return result;
+    }
+
+    /**
+     * Hash code.
+     * 
+     * @return the hash code.
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.character;
+        return hash;
+    }
+
+    /**
      * Return the char representation.
      * 
      * @return the char representation.
