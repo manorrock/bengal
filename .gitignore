@@ -4,4 +4,4 @@
 .vscode
 target/
 nbproject/
-
+nb-configuration.xml
