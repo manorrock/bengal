@@ -3,6 +3,8 @@
  */
 package com.veneni.m;
 
+import java.io.File;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -20,5 +22,8 @@ public class JavaCompilerTest {
         JavaCompiler compiler = new JavaCompiler();
         compiler.parseArguments(new String[]{"src/test/veneni/m/HelloWorld.m"});
         compiler.run();
+        File destinationFile = new File("src/test/veneni/m/HelloWorld.java");
+        assertTrue(destinationFile.exists());
+        destinationFile.delete();
     }
 }
