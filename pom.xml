@@ -11,7 +11,7 @@
     <name>Veneni Project</name>
     <url>http://www.veneni.com</url>
     <modules>
-        <module>java</module>
+        <module>compiler</module>
     </modules>
     <build>
         <pluginManagement>
