@@ -11,7 +11,6 @@
     <name>Veneni Project</name>
     <url>http://www.veneni.com</url>
     <modules>
-        <module>message-compiler</module>
         <module>veneni-message</module>
     </modules>
     <build>
