@@ -9,4 +9,38 @@
     <artifactId>veneni-message</artifactId>
     <packaging>jar</packaging>
     <name>Veneni Message</name>
+    <profiles>
+        <!--
+
+        As generating a native image is a rather expensive operation in terms of
+        CPU and memory utilization and the desire for a developer to be very 
+        effective this is put in a profile that will run on our CI/CD pipeline.
+                 
+          -->
+        <profile>
+            <id>graalvm</id>
+            <build>
+                <plugins>            
+                    <plugin>
+                        <groupId>org.graalvm.nativeimage</groupId>
+                        <artifactId>native-image-maven-plugin</artifactId>
+                        <version>20.0.0</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>native-image</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <mainClass>com.veneni.message.VeneniMessageCli</mainClass>
+                                    <imageName>vemesg</imageName>
+                                    <buildArgs>-H:ReflectionConfigurationFiles=${basedir}/src/main/graalvm/reflection.json -H:ResourceConfigurationFiles=${basedir}/src/main/graalvm/resources.json</buildArgs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
