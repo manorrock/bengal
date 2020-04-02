@@ -4,6 +4,7 @@
 package com.veneni.message;
 
 import com.veneni.message.runtime.VeneniMessageObject;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
@@ -19,9 +20,11 @@ public class VeneniMessageParserTest {
      */
     @Test
     public void testParse() {
-        String string = "object";
+        String string = "object MyObject";
         VeneniMessageParser parser = new VeneniMessageParser();
         Object result = parser.parse(string);
         assertTrue(result instanceof VeneniMessageObject);
+        VeneniMessageObject object = (VeneniMessageObject) result;
+        assertEquals("MyObject", object.getName());
     }
 }

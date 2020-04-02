@@ -9,4 +9,27 @@ package com.veneni.message.runtime;
  * @author Manfred Riem (mriem@veneni.com)
  */
 public class VeneniMessageObject {
+    
+    /**
+     * Stores the name.
+     */
+    private final String name;
+    
+    /**
+     * Constructor.
+     * 
+     * @param name the name.
+     */
+    public VeneniMessageObject(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Get the name.
+     * 
+     * @return the name.
+     */
+    public String getName() {
+        return name;
+    }
 }

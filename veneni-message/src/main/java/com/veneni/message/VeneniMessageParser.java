@@ -28,7 +28,7 @@ public class VeneniMessageParser extends MessageBaseVisitor {
      */
     @Override
     public Object visitParse(MessageParser.ParseContext context) {
-        return new VeneniMessageObject();
+        return new VeneniMessageObject(context.ID().getText());
     }
 
     /**

@@ -1,7 +1,14 @@
 grammar Message;
 
 parse
- : 'object'
+ : 'object' ID
+ ;
+
+/*
+ *
+ */
+ID
+ : [a-zA-Z_]+
  ;
 
 /*
