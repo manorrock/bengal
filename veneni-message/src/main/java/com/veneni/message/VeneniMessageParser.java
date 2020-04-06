@@ -7,8 +7,6 @@ import com.veneni.message.antlr.MessageBaseVisitor;
 import com.veneni.message.antlr.MessageLexer;
 import com.veneni.message.antlr.MessageParser;
 import com.veneni.message.runtime.VeneniMessageObject;
-import java.util.ArrayList;
-import java.util.List;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;

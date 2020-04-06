@@ -1,11 +1,11 @@
 grammar Message;
 
 parse
- : 'object' ID
+ : 'object' ID '{' '}'
  ;
 
 /*
- *
+ * parse an identifier
  */
 ID
  : [a-zA-Z_]+
@@ -15,5 +15,5 @@ ID
  * skip spaces, tabs, newlines
  */
 WS 
- : [ \t\r\n]+ -> skip 
- ;       
+ : [ \t\r\n]+ -> skip
+ ;
