@@ -20,7 +20,7 @@ public class VeneniMessageParserTest {
      */
     @Test
     public void testParse() {
-        String string = "object MyObject";
+        String string = "object MyObject { }";
         VeneniMessageParser parser = new VeneniMessageParser();
         Object result = parser.parse(string);
         assertTrue(result instanceof VeneniMessageObject);

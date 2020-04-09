@@ -4,6 +4,10 @@ parse
  : 'object' ID '{' '}'
  ;
 
+BooleanLiteral
+ : 'true'
+ ;
+
 /*
  * parse an identifier
  */
