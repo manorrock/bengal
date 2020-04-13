@@ -6,6 +6,7 @@ parse
 
 BooleanLiteral
  : 'true'
+ | 'false'
  ;
 
 /*
