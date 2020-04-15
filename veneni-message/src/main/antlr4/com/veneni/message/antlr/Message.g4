@@ -9,6 +9,10 @@ BooleanLiteral
  | 'false'
  ;
 
+methodDeclaration
+ : 'method' ID '{' '}'
+ ;
+
 /*
  * parse an identifier
  */
