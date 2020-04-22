@@ -9,6 +9,10 @@ BooleanLiteral
  | 'false'
  ;
 
+StringLiteral
+ : '"' (.)* '"'
+ ;
+
 methodDeclaration
  : 'method' ID '{' '}'
  ;
