@@ -11,7 +11,7 @@
     <name>Veneni Project</name>
     <url>http://www.veneni.com</url>
     <modules>
-        <module>veneni-message</module>
+        <module>message</module>
     </modules>
     <build>
         <pluginManagement>
