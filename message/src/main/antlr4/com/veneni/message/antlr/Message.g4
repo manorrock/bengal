@@ -1,7 +1,8 @@
 grammar Message;
 
 parse
- : 'object' ID '{' '}'
+ : BooleanLiteral
+ | 'object' ID '{' '}'
  ;
 
 BooleanLiteral

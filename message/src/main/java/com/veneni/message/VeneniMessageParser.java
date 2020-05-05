@@ -26,6 +26,11 @@ public class VeneniMessageParser extends MessageBaseVisitor {
      */
     @Override
     public Object visitParse(MessageParser.ParseContext context) {
+        if (context.BooleanLiteral() != null) {
+            MessageBoolean mb = new MessageBoolean();
+            mb.setBoolean(Boolean.parseBoolean(context.BooleanLiteral().getText()));
+            return mb;
+        }
         return new VeneniMessageObject(context.ID().getText());
     }
 
