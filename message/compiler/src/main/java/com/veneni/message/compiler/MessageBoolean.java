@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
  */
-package com.veneni.message;
+package com.veneni.message.compiler;
 
 /**
  * A Veneni Message boolean.

@@ -1,8 +1,10 @@
 /*
  * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
  */
-package com.veneni.message;
+package com.veneni.message.compiler;
 
+import com.veneni.message.compiler.MessageBoolean;
+import com.veneni.message.compiler.VeneniMessageParser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
