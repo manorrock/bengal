@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
+ * Copyright (c) 2002-2020 Veneni.com. All Rights Reserved.
  */
 package com.veneni.message.compiler;
 
 /**
- * A Veneni Message boolean.
+ * A parsed boolean.
  * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-public class MessageBoolean {
+class ParsedBoolean {
     
     /**
      * Stores the boolean value.
@@ -31,14 +31,5 @@ public class MessageBoolean {
      */
     public void setBoolean(boolean value) {
         this.value = value;
-    }
-    
-    /**
-     * Translate it to Java.
-     * 
-     * @return the Java representation.
-     */
-    public String toJava() {
-        return Boolean.toString(value);
     }
 }

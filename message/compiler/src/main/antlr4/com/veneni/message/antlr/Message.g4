@@ -1,21 +1,31 @@
 grammar Message;
 
 parse
- : BooleanLiteral
- | 'object' ID '{' '}'
+ : booleanLiteral
+ | objectDeclaration
+ | methodDeclaration
+ | nilLiteral
  ;
 
-BooleanLiteral
+booleanLiteral
  : 'true'
  | 'false'
  ;
 
-StringLiteral
- : '"' (.)* '"'
+nilLiteral
+ : 'nil'
+ ;
+
+stringLiteral
+ : '"' (.)*? '"'
+ ;
+
+objectDeclaration
+ : 'object' ID '{' '}'
  ;
 
 methodDeclaration
- : 'method' ID '{' '}'
+ : 'method' ID '(' ID? ')' '{' '}'
  ;
 
 /*

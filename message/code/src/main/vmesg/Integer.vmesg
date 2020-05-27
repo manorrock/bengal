@@ -1,0 +1,41 @@
+/*
+ * Copyright (c) 2002-2020 Veneni.com. All Rights Reserved.
+ */
+
+object Integer {
+
+  native {
+    java.lang.Long longValue;
+  }
+
+  method ge(value) {
+    native {
+      if (longValue >= value) {
+    }
+
+    result = system.new("Boolean");
+    return result.true();
+
+    native {
+      } else {
+    }
+
+    result = system.new("Boolean");
+    return result.false();
+
+    native {
+        return false;
+      }
+    }
+  }
+
+  method lt(value) {
+    native {
+      if (longValue < value) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+}

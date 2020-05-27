@@ -15,6 +15,7 @@
     <packaging>pom</packaging>
     <name>Veneni Message - Project</name>
     <modules>
+        <module>code</module>
         <module>compiler</module>
         <module>maven-plugin</module>
         <module>runtime</module>

@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
+ * Copyright (c) 2002-2020 Veneni.com. All Rights Reserved.
  */
-package com.veneni.message.runtime;
+package com.veneni.message.compiler;
 
 /**
- * A Veneni Message object.
+ * A parsed method.
  * 
  * @author Manfred Riem (mriem@veneni.com)
  */
-public class VeneniMessageObject {
+class ParsedMethod {
     
     /**
      * Stores the name.
@@ -20,7 +20,7 @@ public class VeneniMessageObject {
      * 
      * @param name the name.
      */
-    public VeneniMessageObject(String name) {
+    public ParsedMethod(String name) {
         this.name = name;
     }
 

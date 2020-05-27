@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) 2002-2020 Veneni.com. All Rights Reserved.
+ */
+
+object Boolean {
+
+  native {
+    java.lang.Boolean booleanValue;
+  }
+
+  method true() {
+    native {
+      booleanValue = true;
+    }
+  }
+
+  method false() {
+    native {
+      booleanValue = false;
+    }
+  }
+
+  method and(value) {
+    native {
+      return this.booleanValue && value;
+    }
+  }
+}

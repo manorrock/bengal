@@ -44,7 +44,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.veneni.message.compiler.VeneniMessageCliCompiler</mainClass>
+                            <mainClass>com.veneni.message.compiler.VeneniMessageCompiler</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

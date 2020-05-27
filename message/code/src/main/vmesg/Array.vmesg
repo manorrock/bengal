@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) 2002-2020 Veneni.com. All Rights Reserved.
+ */
+
+object Array {
+
+  native arrayList;
+
+  maxSize;
+
+  method new(size) {
+    native {
+      arrayList = new ArrayList();
+      maxSize = size;
+    }
+  }
+
+  method set(index, object) {
+    if ((index.ge(0)).and(index.lt(maxSize)) {
+      native {
+        arrayList.set(index, object);
+      }
+    }
+  }
+}

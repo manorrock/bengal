@@ -1,12 +1,11 @@
 /*
- * Copyright (c) 2002-2019 Veneni.com. All Rights Reserved.
+ * Copyright (c) 2002-2020 Veneni.com. All Rights Reserved.
  */
 package com.veneni.message.compiler;
 
 import com.veneni.message.antlr.MessageBaseVisitor;
 import com.veneni.message.antlr.MessageLexer;
 import com.veneni.message.antlr.MessageParser;
-import com.veneni.message.runtime.VeneniMessageObject;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -16,7 +15,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
  *
  * @author Manfred Riem (mriem@manorrock.com)
  */
-public class VeneniMessageParser extends MessageBaseVisitor {
+class Parser extends MessageBaseVisitor {
 
     /**
      * Visit the 'parse' rule.
@@ -26,12 +25,20 @@ public class VeneniMessageParser extends MessageBaseVisitor {
      */
     @Override
     public Object visitParse(MessageParser.ParseContext context) {
-        if (context.BooleanLiteral() != null) {
-            MessageBoolean mb = new MessageBoolean();
-            mb.setBoolean(Boolean.parseBoolean(context.BooleanLiteral().getText()));
+        if (context.booleanLiteral() != null) {
+            ParsedBoolean mb = new ParsedBoolean();
+            mb.setBoolean(Boolean.parseBoolean(context.booleanLiteral().getText()));
             return mb;
         }
-        return new VeneniMessageObject(context.ID().getText());
+        if (context.nilLiteral() != null) {
+            ParsedNil pn = new ParsedNil();
+            return pn;
+        }
+        if (context.methodDeclaration() != null) {
+            ParsedMethod parsedMethod = new ParsedMethod(context.methodDeclaration().ID(0).getText());
+            return parsedMethod;
+        }
+        return new ParsedObject(context.objectDeclaration().ID().getText());
     }
 
     /**
