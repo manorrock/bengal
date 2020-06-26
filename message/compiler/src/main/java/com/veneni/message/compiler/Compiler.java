@@ -87,7 +87,7 @@ class Compiler {
      */
     private String compileNil(ParsedNil parsedNil) {
         StringBuilder output = new StringBuilder();
-        output.append("class0.INSTANCE");
+        output.append("Object0.INSTANCE");
         return output.toString();
     }
     
@@ -99,7 +99,7 @@ class Compiler {
      */
     private String compileObject(ParsedObject parsedObject) {
         StringBuilder output = new StringBuilder();
-        output.append("public class ").append("class").append(index++).append(" {\n");
+        output.append("public class ").append("Object").append(index++).append(" {\n");
         output.append("public static final String VENENI_OBJECT_NAME = \"").append(parsedObject.getName()).append("\";\n");
         output.append("}");
         return output.toString();

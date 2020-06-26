@@ -21,6 +21,6 @@ public class ParsedNilTest {
         String input = "nil";
         Compiler compiler = new Compiler();
         String output = compiler.compile(input);
-        assertEquals("class0.INSTANCE", output);
+        assertEquals("Object0.INSTANCE", output);
     }
 }

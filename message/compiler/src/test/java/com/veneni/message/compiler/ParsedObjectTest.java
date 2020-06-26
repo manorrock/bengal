@@ -21,7 +21,7 @@ public class ParsedObjectTest {
         String input = "object MyObject { }";
         Compiler compiler = new Compiler();
         String output = compiler.compile(input);
-        assertTrue(output.contains("public class class"));
+        assertTrue(output.contains("public class Object1"));
         assertTrue(output.contains("VENENI_OBJECT_NAME = \"MyObject\""));
     }
 }

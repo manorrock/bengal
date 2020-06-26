@@ -55,7 +55,7 @@ public class VeneniMessageCompilerTest {
         System.setOut(new PrintStream(byteOutput));
         compiler.execute(new String[] {"src/test/vmesg/MyObject.vmesg"});
         String output = byteOutput.toString();
-        assertTrue(output.contains("public class class"));
+        assertTrue(output.contains("public class Object1"));
         assertTrue(output.contains("VENENI_OBJECT_NAME = \"MyObject\""));
         System.setOut(original);
     }
@@ -71,7 +71,7 @@ public class VeneniMessageCompilerTest {
         System.setOut(new PrintStream(byteOutput));
         compiler.execute(new String[] {"src/test/vmesg/nil.vmesg"});
         String output = byteOutput.toString();
-        assertTrue(output.contains("class0.INSTANCE"));
+        assertTrue(output.contains("Object0.INSTANCE"));
         System.setOut(original);
     }
 }

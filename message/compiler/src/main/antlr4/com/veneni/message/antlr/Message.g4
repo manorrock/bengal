@@ -4,6 +4,7 @@ parse
  : booleanLiteral
  | objectDeclaration
  | methodDeclaration
+ | ifDeclaration
  | nilLiteral
  ;
 
@@ -22,6 +23,10 @@ stringLiteral
 
 objectDeclaration
  : 'object' ID '{' '}'
+ ;
+
+ifDeclaration
+ : 'if' '{' '}'
  ;
 
 methodDeclaration
