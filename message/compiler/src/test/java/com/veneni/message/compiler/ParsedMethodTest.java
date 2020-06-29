@@ -21,7 +21,7 @@ public class ParsedMethodTest {
         String input = "method MyMethod() { }";
         Compiler compiler = new Compiler();
         String output = compiler.compile(input);
-        assertTrue(output.contains("private Object"));
+        assertTrue(output.contains("private Object MyMethod()"));
         assertTrue(output.contains("() {\n}"));
     }
 }
