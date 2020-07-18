@@ -23,34 +23,31 @@
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-package com.manorrock.bengal.message.parser;
-
-import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
-import com.manorrock.bengal.message.antlr4.MessageParser.ParseContext;
+package com.manorrock.bengal.message.runtime;
 
 /**
- * The visitor for the 'parse' rule.
- *
+ * A nil in Bengal Message.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ParseVisitor extends MessageBaseVisitor<Object> {
+public class MessageNil {
 
     /**
-     * Visit the 'parse' rule.
-     *
-     * @param context the context.
-     * @return the result.
+     * Stores the one and only instance.
+     */
+    public static MessageNil INSTANCE = new MessageNil();
+    
+    /**
+     * Constructor.
+     */
+    private MessageNil() {
+    }
+    
+    /**
+     * toString.
      */
     @Override
-    public Object visitParse(ParseContext context) {
-        Object result = null;
-        if (context.booleanLiteral() != null) {
-            BooleanVisitor visitor = new BooleanVisitor();
-            result = visitor.visitBooleanLiteral(context.booleanLiteral());
-        } else if (context.nilLiteral() != null) {
-            NilVisitor visitor = new NilVisitor();
-            result = visitor.visitNilLiteral(context.nilLiteral());
-        }
-        return result;
+    public String toString() {
+        return "nil";
     }
 }

@@ -26,31 +26,24 @@
 package com.manorrock.bengal.message.parser;
 
 import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
-import com.manorrock.bengal.message.antlr4.MessageParser.ParseContext;
+import com.manorrock.bengal.message.antlr4.MessageParser.NilLiteralContext;
+import com.manorrock.bengal.message.runtime.MessageNil;
 
 /**
- * The visitor for the 'parse' rule.
- *
+ * The visitor for the 'nilLiteral' rule.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ParseVisitor extends MessageBaseVisitor<Object> {
+class NilVisitor extends MessageBaseVisitor<MessageNil> {
 
     /**
-     * Visit the 'parse' rule.
-     *
+     * Visit the 'nilLiteral' rule.
+     * 
      * @param context the context.
-     * @return the result.
+     * @return the nil object.
      */
     @Override
-    public Object visitParse(ParseContext context) {
-        Object result = null;
-        if (context.booleanLiteral() != null) {
-            BooleanVisitor visitor = new BooleanVisitor();
-            result = visitor.visitBooleanLiteral(context.booleanLiteral());
-        } else if (context.nilLiteral() != null) {
-            NilVisitor visitor = new NilVisitor();
-            result = visitor.visitNilLiteral(context.nilLiteral());
-        }
-        return result;
+    public MessageNil visitNilLiteral(NilLiteralContext context) {
+        return MessageNil.INSTANCE;
     }
 }

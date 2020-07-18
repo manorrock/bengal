@@ -1,12 +1,16 @@
 grammar Message;
 
 parse
- : booleanLiteral
+ : booleanLiteral 
+ | nilLiteral
  ;
 
 booleanLiteral
  : 'false' 
  | 'true';
+
+nilLiteral
+ : 'nil';
 
 /*
  * skip spaces, tabs, newlines
