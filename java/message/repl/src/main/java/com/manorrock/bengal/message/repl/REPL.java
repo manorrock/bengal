@@ -79,7 +79,14 @@ public class REPL implements Runnable {
      * Read the input.
      */
     private void read() {
-        input = console.readLine();
+        StringBuilder read = new StringBuilder();
+        String string = console.readLine();
+        while(string.endsWith("\\")) {
+            read.append(string.substring(0, string.length()));
+            string = console.readLine();
+        }
+        read.append(string);
+        input = read.toString();
     }
     
     /**
