@@ -25,25 +25,26 @@
  */
 package com.manorrock.bengal.message.repl;
 
+import com.manorrock.bengal.message.parser.Parser;
 import java.io.Console;
 
 /**
  * The Bengal Message REPL.
- * 
+ *
  * @author Manfred Riem (mriem@manorrock.com)
  */
 public class REPL implements Runnable {
-    
+
     /**
      * Stores the console.
      */
     private final Console console;
-    
+
     /**
      * Stores the input.
      */
     private String input;
-    
+
     /**
      * Stores the output.
      */
@@ -62,6 +63,14 @@ public class REPL implements Runnable {
     private void execute() {
         if (input.equals("exit")) {
             System.exit(0);
+        } else {
+            Parser parser = new Parser();
+            Object parsed = parser.parse(input);
+            if (parsed != null) {
+                output = parsed.toString();
+            } else {
+                output = "Unable to parse: " + input;
+            }
         }
     }
 
@@ -81,40 +90,40 @@ public class REPL implements Runnable {
     private void read() {
         StringBuilder read = new StringBuilder();
         String string = console.readLine();
-        while(string.endsWith("\\")) {
+        while (string.endsWith("\\")) {
             read.append(string.substring(0, string.length()));
             string = console.readLine();
         }
         read.append(string);
         input = read.toString();
     }
-    
+
     /**
      * Run method.
      */
     @Override
     public void run() {
-        for(;;) {
+        for (;;) {
             prompt();
             read();
             execute();
             print();
         }
     }
-    
+
     /**
      * Parse the command-line arguments.
-     * 
+     *
      * @param arguments the command-line arguments.
      * @return the REPL.
      */
     public REPL arguments(String[] arguments) {
         return this;
     }
-    
+
     /**
      * Main method.
-     * 
+     *
      * @param arguments the command-line arguments.
      */
     public static void main(String[] arguments) {
