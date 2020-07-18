@@ -9,6 +9,7 @@
     <url>http://www.veneni.com</url>
     <modules>
         <module>message</module>
+        <module>bengal</module>
     </modules>
     <build>
         <pluginManagement>
