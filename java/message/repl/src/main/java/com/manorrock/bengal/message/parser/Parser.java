@@ -28,16 +28,28 @@ package com.manorrock.bengal.message.parser;
 import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
 import com.manorrock.bengal.message.antlr4.MessageLexer;
 import com.manorrock.bengal.message.antlr4.MessageParser;
+import com.manorrock.bengal.message.antlr4.MessageParser.ParseContext;
+import java.util.BitSet;
+import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
+import org.antlr.v4.runtime.atn.ATNConfigSet;
+import org.antlr.v4.runtime.dfa.DFA;
 
 /**
  * The Bengal Message language parser.
- * 
+ *
  * @author Manfred Riem (mriem@manorrock.com)
  */
-public class Parser extends MessageBaseVisitor {
-    
+public class Parser extends MessageBaseVisitor implements ANTLRErrorListener {
+
+    /**
+     * Stores the error flag.
+     */
+    private boolean error;
+
     /**
      * Parse the string.
      *
@@ -46,8 +58,36 @@ public class Parser extends MessageBaseVisitor {
      */
     public Object parse(String string) {
         MessageLexer lexer = new MessageLexer(CharStreams.fromString(string));
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(this);
         MessageParser parser = new MessageParser(new CommonTokenStream(lexer));
         ParseVisitor parseVisitor = new ParseVisitor();
-        return parseVisitor.visitParse(parser.parse());
+        parser.removeErrorListeners();
+        parser.addErrorListener(this);
+        ParseContext parseContext = parser.parse();
+        if (error) {
+            return null;
+        }
+        return parseVisitor.visitParse(parseContext);
+    }
+
+    @Override
+    public void reportAmbiguity(org.antlr.v4.runtime.Parser recognizer, DFA dfa, int startIndex, int stopIndex, boolean exact, BitSet ambigAlts, ATNConfigSet configs) {
+        error = true;
+    }
+
+    @Override
+    public void reportAttemptingFullContext(org.antlr.v4.runtime.Parser recognizer, DFA dfa, int startIndex, int stopIndex, BitSet conflictingAlts, ATNConfigSet configs) {
+        error = true;
+    }
+
+    @Override
+    public void reportContextSensitivity(org.antlr.v4.runtime.Parser recognizer, DFA dfa, int startIndex, int stopIndex, int prediction, ATNConfigSet configs) {
+        error = true;
+    }
+
+    @Override
+    public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
+        error = true;
     }
 }
