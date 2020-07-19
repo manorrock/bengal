@@ -23,37 +23,43 @@
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-package com.manorrock.bengal.message.parser;
-
-import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
-import com.manorrock.bengal.message.antlr4.MessageParser.ParseContext;
+package com.manorrock.bengal.message.runtime;
 
 /**
- * The visitor for the 'parse' rule.
- *
+ * An object declaration.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ParseVisitor extends MessageBaseVisitor<Object> {
+public class MessageObjectDeclaration {
+    
+    /**
+     * Stores the name.
+     */
+    private final String name;
+    
+    /**
+     * Constructor.
+     * 
+     * @param name the name of the object.
+     */
+    public MessageObjectDeclaration(String name) {
+        this.name = name;
+    }
 
     /**
-     * Visit the 'parse' rule.
-     *
-     * @param context the context.
-     * @return the result.
+     * Get the name.
+     * 
+     * @return the name.
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * toString.
      */
     @Override
-    public Object visitParse(ParseContext context) {
-        Object result = null;
-        if (context.booleanLiteral() != null) {
-            BooleanVisitor visitor = new BooleanVisitor();
-            result = visitor.visitBooleanLiteral(context.booleanLiteral());
-        } else if (context.nilLiteral() != null) {
-            NilVisitor visitor = new NilVisitor();
-            result = visitor.visitNilLiteral(context.nilLiteral());
-        } else if (context.objectDeclaration() != null) {
-            ObjectDeclarationVisitor visitor = new ObjectDeclarationVisitor();
-            result = visitor.visitObjectDeclaration(context.objectDeclaration());
-        }
-        return result;
+    public String toString() {
+        return "object " + name;
     }
 }

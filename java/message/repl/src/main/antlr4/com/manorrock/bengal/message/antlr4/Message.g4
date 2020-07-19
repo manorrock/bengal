@@ -1,7 +1,8 @@
 grammar Message;
 
 parse
- : booleanLiteral 
+ : objectDeclaration
+ | booleanLiteral 
  | nilLiteral
  ;
 
@@ -11,6 +12,17 @@ booleanLiteral
 
 nilLiteral
  : 'nil';
+
+objectDeclaration
+ : 'object' ID '{' '}'
+ ;
+
+/*
+ * parse an identifier
+ */
+ID
+ : [a-zA-Z_]+
+ ;
 
 /*
  * skip spaces, tabs, newlines

@@ -26,7 +26,9 @@
 package com.manorrock.bengal.message.repl;
 
 import com.manorrock.bengal.message.parser.Parser;
+import com.manorrock.bengal.message.runtime.MessageObjectDeclaration;
 import java.io.Console;
+import java.util.HashMap;
 
 /**
  * The Bengal Message REPL.
@@ -39,6 +41,11 @@ public class REPL implements Runnable {
      * Stores the console.
      */
     private final Console console;
+
+    /**
+     * Stores the object declarations.
+     */
+    private final HashMap<String, MessageObjectDeclaration> declarations;
 
     /**
      * Stores the input.
@@ -55,18 +62,31 @@ public class REPL implements Runnable {
      */
     public REPL() {
         console = System.console();
+        declarations = new HashMap<>();
     }
 
     /**
      * Execute the input.
      */
     private void execute() {
-        if (input.equals("exit")) {
+        if (input.equals("/exit")) {
             System.exit(0);
+        } else if (input.equals("/declarations")) {
+            final StringBuilder outputBuilder = new StringBuilder();
+            outputBuilder.append("object declarations\n");
+            outputBuilder.append("===================\n");
+            declarations.forEach((t, u) -> {
+                outputBuilder.append(t).append("\n");
+            });
+            output = outputBuilder.toString();
         } else {
             Parser parser = new Parser();
             Object parsed = parser.parse(input);
             if (parsed != null) {
+                if (parsed instanceof MessageObjectDeclaration) {
+                    MessageObjectDeclaration declaration = (MessageObjectDeclaration) parsed;
+                    declarations.put(declaration.getName(), declaration);
+                }
                 output = parsed.toString();
             } else {
                 output = "Unable to parse: " + input;

@@ -26,34 +26,24 @@
 package com.manorrock.bengal.message.parser;
 
 import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
-import com.manorrock.bengal.message.antlr4.MessageParser.ParseContext;
+import com.manorrock.bengal.message.antlr4.MessageParser.ObjectDeclarationContext;
+import com.manorrock.bengal.message.runtime.MessageObjectDeclaration;
 
 /**
- * The visitor for the 'parse' rule.
- *
+ * The visitor for the 'objectDeclaration' rule.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ParseVisitor extends MessageBaseVisitor<Object> {
+class ObjectDeclarationVisitor extends MessageBaseVisitor<MessageObjectDeclaration> {
 
     /**
-     * Visit the 'parse' rule.
-     *
+     * Visit the 'objectDeclaration' rule.
+     * 
      * @param context the context.
-     * @return the result.
+     * @return the object declaration object.
      */
     @Override
-    public Object visitParse(ParseContext context) {
-        Object result = null;
-        if (context.booleanLiteral() != null) {
-            BooleanVisitor visitor = new BooleanVisitor();
-            result = visitor.visitBooleanLiteral(context.booleanLiteral());
-        } else if (context.nilLiteral() != null) {
-            NilVisitor visitor = new NilVisitor();
-            result = visitor.visitNilLiteral(context.nilLiteral());
-        } else if (context.objectDeclaration() != null) {
-            ObjectDeclarationVisitor visitor = new ObjectDeclarationVisitor();
-            result = visitor.visitObjectDeclaration(context.objectDeclaration());
-        }
-        return result;
+    public MessageObjectDeclaration visitObjectDeclaration(ObjectDeclarationContext context) {
+        return new MessageObjectDeclaration(context.ID().getText());
     }
 }
