@@ -1,7 +1,7 @@
 ---
-description: Veneni Math
+description: Bengal Math
 ---
 
 ## Introduction
 
-Veneni Math is a language that primarily focuses on Mathematics.
+Bengal Math is a language that primarily focuses on Mathematics.

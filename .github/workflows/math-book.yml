@@ -1,0 +1,34 @@
+name: math-book
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GIT_PASSWORD }}
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: 'Installing GitBook CLI'
+      run: npm install -g gitbook-cli
+    - name: 'Generating Bengal Message Book'
+      run: |
+        cd book/math
+        gitbook install
+        gitbook build
+        mv _book ../../_book
+        cd ../..
+        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+        git checkout gh-pages
+        mkdir -p book/math || true
+        rm -rf book/math/*
+        mv _book/* book/math
+        git config --global user.email "noreply@manorrock.com"
+        git config --global user.name "Automated process"
+        git add .
+        git commit -m "Auto-publishing Bengal Math Book"
+        git push

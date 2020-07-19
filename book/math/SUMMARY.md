@@ -3,7 +3,7 @@
 
 * [Introduction](README.md)
 
-## Veneni Math
+## Bengal Math
 
 * [Introduction](README.md)
 * [First steps](firststeps.md)
