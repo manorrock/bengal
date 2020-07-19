@@ -1,4 +1,4 @@
-name: books
+name: message-book
 on:
   push:
     branches:
@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+      with:
+        token: ${{ secrets.GIT_PASSWORD }}
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
@@ -18,11 +20,14 @@ jobs:
         cd book/message
         gitbook install
         gitbook build
-        ls
+        mv _book ../../_book
+        cd ../..
         git checkout gh-pages
-        git status
-    - name: 'Generating Bengal Message Math'
-      run: |
-        cd book/math
-        gitbook install
-        gitbook build
+        mkdir -p book/message || true
+        rm -rf book/message/*
+        mv _book/* book/message
+        git config --global user.email "noreply@manorrock.com"
+        git config --global user.name "Automated process"
+        git add .
+        git commit -m "Auto-publishing Bengal Message Book"
+        git push
