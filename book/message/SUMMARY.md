@@ -3,7 +3,7 @@
 
 * [Introduction](README.md)
 
-## Veneni Message
+## Bengal Message
 
 * [First steps](firststeps.md)
   * [Sending a message](firststeps.md#sending-a-message)

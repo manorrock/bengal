@@ -4,7 +4,7 @@ description: Other constructs
 
 ### Adding native code
 
-The example below mixes Veneni message with Java code.
+The example below mixes Bengal Message with Java code.
 
   ```
   native goingNative() {
