@@ -1,0 +1,25 @@
+name: books
+on:
+  push:
+    branches:
+      - master
+jobs:
+  books:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: 'Installing GitBook CLI'
+      run: npm install -g gitbook-cli
+    - name: 'Generating Bengal Message Book'
+      run: |
+        cd books/message
+        gitbook install
+        gitbook build
+    - name: 'Generating Bengal Message Math'
+      run: |
+        cd books/math
+        gitbook install
+        gitbook build
