@@ -26,33 +26,24 @@
 package com.manorrock.bengal.message.parser;
 
 import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
-import com.manorrock.bengal.message.antlr4.MessageParser.ObjectDeclarationContext;
+import com.manorrock.bengal.message.antlr4.MessageParser.MethodDeclarationContext;
 import com.manorrock.bengal.message.runtime.MessageMethodDeclaration;
-import com.manorrock.bengal.message.runtime.MessageObjectDeclaration;
 
 /**
- * The visitor for the 'objectDeclaration' rule.
- *
+ * The visitor for the 'methodDeclaration' rule.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ObjectDeclarationVisitor extends MessageBaseVisitor<MessageObjectDeclaration> {
+class MethodDeclarationVisitor extends MessageBaseVisitor<MessageMethodDeclaration> {
 
     /**
      * Visit the 'objectDeclaration' rule.
-     *
+     * 
      * @param context the context.
      * @return the object declaration object.
      */
     @Override
-    public MessageObjectDeclaration visitObjectDeclaration(ObjectDeclarationContext context) {
-        MessageObjectDeclaration declaration = new MessageObjectDeclaration(context.ID().getText());
-        MethodDeclarationVisitor methodVisitor = new MethodDeclarationVisitor();
-        if (context.methodDeclaration() != null) {
-            context.methodDeclaration().forEach(c -> {
-                MessageMethodDeclaration methodDeclaration = methodVisitor.visitMethodDeclaration(c);
-                declaration.addMethod(methodDeclaration);
-            });
-        }
-        return declaration;
+    public MessageMethodDeclaration visitMethodDeclaration(MethodDeclarationContext context) {
+        return new MessageMethodDeclaration(context.ID().getText());
     }
 }

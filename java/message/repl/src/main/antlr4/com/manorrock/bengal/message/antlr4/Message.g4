@@ -14,7 +14,13 @@ nilLiteral
  : 'nil';
 
 objectDeclaration
- : 'object' ID '{' '}'
+ : 'object' ID '{'
+     methodDeclaration*
+   '}'
+ ;
+
+methodDeclaration
+ : 'method' ID '(' ')' '{' '}'
  ;
 
 /*

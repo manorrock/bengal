@@ -23,36 +23,43 @@
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-package com.manorrock.bengal.message.parser;
-
-import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
-import com.manorrock.bengal.message.antlr4.MessageParser.ObjectDeclarationContext;
-import com.manorrock.bengal.message.runtime.MessageMethodDeclaration;
-import com.manorrock.bengal.message.runtime.MessageObjectDeclaration;
+package com.manorrock.bengal.message.runtime;
 
 /**
- * The visitor for the 'objectDeclaration' rule.
- *
+ * A method declaration.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ObjectDeclarationVisitor extends MessageBaseVisitor<MessageObjectDeclaration> {
+public class MessageMethodDeclaration {
+    
+    /**
+     * Stores the name.
+     */
+    private final String name;
+    
+    /**
+     * Constructor.
+     * 
+     * @param name the name of the object.
+     */
+    public MessageMethodDeclaration(String name) {
+        this.name = name;
+    }
 
     /**
-     * Visit the 'objectDeclaration' rule.
-     *
-     * @param context the context.
-     * @return the object declaration object.
+     * Get the name.
+     * 
+     * @return the name.
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * toString.
      */
     @Override
-    public MessageObjectDeclaration visitObjectDeclaration(ObjectDeclarationContext context) {
-        MessageObjectDeclaration declaration = new MessageObjectDeclaration(context.ID().getText());
-        MethodDeclarationVisitor methodVisitor = new MethodDeclarationVisitor();
-        if (context.methodDeclaration() != null) {
-            context.methodDeclaration().forEach(c -> {
-                MessageMethodDeclaration methodDeclaration = methodVisitor.visitMethodDeclaration(c);
-                declaration.addMethod(methodDeclaration);
-            });
-        }
-        return declaration;
+    public String toString() {
+        return "method " + name;
     }
 }

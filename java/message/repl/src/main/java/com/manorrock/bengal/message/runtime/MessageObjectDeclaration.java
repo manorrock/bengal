@@ -25,41 +25,66 @@
  */
 package com.manorrock.bengal.message.runtime;
 
+import java.util.HashMap;
+
 /**
  * An object declaration.
- * 
+ *
  * @author Manfred Riem (mriem@manorrock.com)
  */
 public class MessageObjectDeclaration {
-    
+
+    /**
+     * Stores the methods.
+     */
+    private final HashMap<String, MessageMethodDeclaration> methods;
+
     /**
      * Stores the name.
      */
     private final String name;
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param name the name of the object.
      */
     public MessageObjectDeclaration(String name) {
+        this.methods = new HashMap<>();
         this.name = name;
     }
 
     /**
+     * Add a method.
+     *
+     * @param methodDeclaration the method declaration.
+     */
+    public void addMethod(MessageMethodDeclaration methodDeclaration) {
+        methods.put(methodDeclaration.getName(), methodDeclaration);
+    }
+
+    /**
      * Get the name.
-     * 
+     *
      * @return the name.
      */
     public String getName() {
         return name;
     }
-    
+
     /**
      * toString.
      */
     @Override
     public String toString() {
-        return "object " + name;
+        StringBuilder result = new StringBuilder();
+        result.append("object ").append(name);
+        if (methods.size() > 0) {
+            result.append("\n");
+            methods.keySet().forEach(k -> {
+                result.append("- method ").append(k).append("\n");
+            });
+        }
+        return result.toString();
     }
 }
