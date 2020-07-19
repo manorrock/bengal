@@ -1,7 +1,7 @@
 name: build
 on: [push]
 jobs:
-  build:
+  java:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -10,4 +10,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B --no-transfer-progress package
+      run: |
+        cd java
+        mvn -B --no-transfer-progress package
