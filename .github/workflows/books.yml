@@ -15,11 +15,11 @@ jobs:
       run: npm install -g gitbook-cli
     - name: 'Generating Bengal Message Book'
       run: |
-        cd books/message
+        cd book/message
         gitbook install
         gitbook build
     - name: 'Generating Bengal Message Math'
       run: |
-        cd books/math
+        cd book/math
         gitbook install
         gitbook build
