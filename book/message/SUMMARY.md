@@ -18,6 +18,7 @@
   * [Using integers](primitives.md#using-integers)
   * [Using nil](primitives.md#using-nil)
   * [Using strings](primitives.md#using-strings)
+  * [Using floating point numbers](primitives.md#using-floating-point-numbers)
 * [Controlling the flow](controlflow.md)
   * [If then statement](controlflow.md#if-then-statement)
   * [If then else statement](controlflow.md#if-then-else-statement)
