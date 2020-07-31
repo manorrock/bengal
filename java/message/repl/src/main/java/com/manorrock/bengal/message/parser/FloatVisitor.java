@@ -26,40 +26,24 @@
 package com.manorrock.bengal.message.parser;
 
 import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
-import com.manorrock.bengal.message.antlr4.MessageParser.ParseContext;
+import com.manorrock.bengal.message.antlr4.MessageParser.FloatLiteralContext;
+import com.manorrock.bengal.message.runtime.MessageFloat;
 
 /**
- * The visitor for the 'parse' rule.
- *
+ * The visitor for the 'booleanLiteral' rule.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ParseVisitor extends MessageBaseVisitor<Object> {
+class FloatVisitor extends MessageBaseVisitor<MessageFloat> {
 
     /**
-     * Visit the 'parse' rule.
-     *
+     * Visit the 'floatLiteral' rule.
+     * 
      * @param context the context.
-     * @return the result.
+     * @return the float object.
      */
     @Override
-    public Object visitParse(ParseContext context) {
-        Object result = null;
-        if (context.booleanLiteral() != null) {
-            BooleanVisitor visitor = new BooleanVisitor();
-            result = visitor.visitBooleanLiteral(context.booleanLiteral());
-        } else if (context.floatLiteral()!= null) {
-            FloatVisitor visitor = new FloatVisitor();
-            result = visitor.visitFloatLiteral(context.floatLiteral());
-        } else if (context.integerLiteral()!= null) {
-            IntegerVisitor visitor = new IntegerVisitor();
-            result = visitor.visitIntegerLiteral(context.integerLiteral());
-        } else if (context.nilLiteral() != null) {
-            NilVisitor visitor = new NilVisitor();
-            result = visitor.visitNilLiteral(context.nilLiteral());
-        } else if (context.objectDeclaration() != null) {
-            ObjectDeclarationVisitor visitor = new ObjectDeclarationVisitor();
-            result = visitor.visitObjectDeclaration(context.objectDeclaration());
-        }
-        return result;
+    public MessageFloat visitFloatLiteral(FloatLiteralContext context) {
+        return new MessageFloat(context.getText());
     }
 }

@@ -23,43 +23,34 @@
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-package com.manorrock.bengal.message.parser;
-
-import com.manorrock.bengal.message.antlr4.MessageBaseVisitor;
-import com.manorrock.bengal.message.antlr4.MessageParser.ParseContext;
+package com.manorrock.bengal.message.runtime;
 
 /**
- * The visitor for the 'parse' rule.
- *
+ * A float in Bengal Message.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ParseVisitor extends MessageBaseVisitor<Object> {
-
+public class MessageFloat {
+    
     /**
-     * Visit the 'parse' rule.
-     *
-     * @param context the context.
-     * @return the result.
+     * Stores the float.
+     */
+    private final Double floatValue;
+    
+    /**
+     * Constructor.
+     * 
+     * @param floatString the float value in string format.
+     */
+    public MessageFloat(String floatString) {
+        floatValue = Double.valueOf(floatString);
+    }
+    
+    /**
+     * toString.
      */
     @Override
-    public Object visitParse(ParseContext context) {
-        Object result = null;
-        if (context.booleanLiteral() != null) {
-            BooleanVisitor visitor = new BooleanVisitor();
-            result = visitor.visitBooleanLiteral(context.booleanLiteral());
-        } else if (context.floatLiteral()!= null) {
-            FloatVisitor visitor = new FloatVisitor();
-            result = visitor.visitFloatLiteral(context.floatLiteral());
-        } else if (context.integerLiteral()!= null) {
-            IntegerVisitor visitor = new IntegerVisitor();
-            result = visitor.visitIntegerLiteral(context.integerLiteral());
-        } else if (context.nilLiteral() != null) {
-            NilVisitor visitor = new NilVisitor();
-            result = visitor.visitNilLiteral(context.nilLiteral());
-        } else if (context.objectDeclaration() != null) {
-            ObjectDeclarationVisitor visitor = new ObjectDeclarationVisitor();
-            result = visitor.visitObjectDeclaration(context.objectDeclaration());
-        }
-        return result;
+    public String toString() {
+        return floatValue.toString();
     }
 }

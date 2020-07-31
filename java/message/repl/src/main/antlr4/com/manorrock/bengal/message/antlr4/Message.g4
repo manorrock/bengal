@@ -3,6 +3,7 @@ grammar Message;
 parse
  : objectDeclaration
  | booleanLiteral 
+ | floatLiteral 
  | integerLiteral
  | nilLiteral
  ;
@@ -10,6 +11,10 @@ parse
 booleanLiteral
  : 'false' 
  | 'true';
+
+floatLiteral
+ : FLOAT
+ ;
 
 integerLiteral
  : INTEGER
@@ -38,6 +43,14 @@ ID
 INTEGER
  : ('0' .. '9')+
  ;
+
+FLOAT
+   : INTEGER+ '.' INTEGER+ SCALE?
+   ;
+
+SCALE
+   : ('e' | 'E') ('+' | '-')? INTEGER+
+   ;
 
 /*
  * skip spaces, tabs, newlines
