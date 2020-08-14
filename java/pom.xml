@@ -12,5 +12,6 @@
     <name>Manorrock Bengal - Project</name>
     <modules>
         <module>message</module>
+        <module>math</module>
     </modules>
 </project>
