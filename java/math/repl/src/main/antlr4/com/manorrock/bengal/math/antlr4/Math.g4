@@ -3,6 +3,12 @@ grammar Math;
 parse
  : booleanLiteral
  | integerLiteral
+ | plusExpression
+ ;
+
+plusExpression
+ : integerLiteral '+' plusExpression
+ | integerLiteral
  ;
 
 booleanLiteral

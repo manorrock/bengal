@@ -26,32 +26,23 @@
 package com.manorrock.bengal.math.repl;
 
 import com.manorrock.bengal.math.antlr4.MathBaseVisitor;
-import com.manorrock.bengal.math.antlr4.MathParser.ParseContext;
+import com.manorrock.bengal.math.antlr4.MathParser.PlusExpressionContext;
 
 /**
- * The visitor for the 'parse' rule.
- *
+ * The visitor for the 'expression' rule.
+ * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-class ParseVisitor extends MathBaseVisitor<Object> {
+class PlusExpressionVisitor extends MathBaseVisitor<MathPlusExpression> {
 
     /**
-     * Visit the 'parse' rule.
-     *
+     * Visit the 'expression' rule.
+     * 
      * @param context the context.
-     * @return the result.
+     * @return the expression object.
      */
     @Override
-    public Object visitParse(ParseContext context) {
-        Object result = null;
-        if (context.integerLiteral()!= null) {
-            IntegerVisitor visitor = new IntegerVisitor();
-            result = visitor.visitIntegerLiteral(context.integerLiteral());
-        }
-        if (context.plusExpression()!= null) {
-            PlusExpressionVisitor visitor = new PlusExpressionVisitor();
-            result = visitor.visitPlusExpression(context.plusExpression());
-        }
-        return result;
+    public MathPlusExpression visitPlusExpression(PlusExpressionContext context) {
+        return new MathPlusExpression();
     }
 }
