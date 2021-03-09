@@ -1,8 +1,0 @@
-.classpath
-.project
-.settings
-.vscode
-dependency-reduced-pom.xml
-target/
-nbproject/
-nb-configuration.xml
