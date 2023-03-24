@@ -6,12 +6,12 @@
             http://maven.apache.org/POM/4.0.0
             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>icu.bengal</groupId>
-    <artifactId>project</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>Bengal - Project</name>
-    <modules>
-        <module>repl</module>
-    </modules>
+    <parent>
+        <groupId>icu.bengal</groupId>
+        <artifactId>project</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>bengal-repl</artifactId>
+    <packaging>jar</packaging>
+    <name>Bengal - REPL</name>
 </project>
