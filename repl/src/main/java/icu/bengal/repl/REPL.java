@@ -1,11 +1,69 @@
 package icu.bengal.repl;
 
+import java.util.Scanner;
+
 /**
  * The main entry point.
  * 
  * @author Manfred Riem (manfred@bengal.icu)
  */
 public class REPL {
+    
+    /**
+     * Stores the done flag.
+     */
+    private boolean done;
+    
+    /**
+     * Stores the line.
+     */
+    private String line;
+    
+    /**
+     * Stores the result.
+     */
+    private String result;
+
+    /**
+     * Evaluate.
+     */
+    private void eval() {
+        result = line;
+    }
+    
+    /**
+     * Print
+     */
+    private void print() {
+        System.out.println(result);
+    }
+    
+    /**
+     * Prompt
+     */
+    private void prompt() {
+        System.out.print("$ ");
+    }
+    
+    /**
+     * Read.
+     */
+    private void read() {
+        Scanner scanner = new Scanner(System.in);
+        line = scanner.nextLine();
+    }
+    
+    /**
+     * REPL loop.
+     */
+    private void run() {
+        while(!done) {
+            prompt();
+            read();
+            eval();
+            print();
+        }
+    }
 
     /**
      * The main method.
@@ -13,6 +71,7 @@ public class REPL {
      * @param arguments the command line arguments
      */
     public static void main(String[] arguments) {
-        System.out.println("Welcome to Bengal REPL");
+        REPL repl = new REPL();
+        repl.run();
     }
 }
