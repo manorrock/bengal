@@ -1,5 +1,6 @@
 grammar bengal;
 
+assignment: ID '=' method_call ';';
 object_definition: 'object' ID;
 method_call: ID '.' ID '()';
 ID: [a-zA-Z]+;
