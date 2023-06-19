@@ -1,6 +1,8 @@
 grammar bengal;
 
-boolean_expression: 'true' || 'false';
+boolean_false: 'false';
+boolean_true: 'true';
+boolean_expression: boolean_false || boolean_true;
 assignment: ID WS* '=' WS* method_call ';';
 delete_statement: 'delete' WS+ ID;
 object_definition: 'object' WS+ ID '{' WS* '}';
