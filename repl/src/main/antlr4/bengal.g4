@@ -11,6 +11,7 @@ new_instance: 'new' WS+ ID;
 method_call: ID '.' ID '()';
 method_definition: 'method' WS+ ID '('')' WS* '{' WS* '}';
 while_statement: 'while' WS* '(' boolean_expression ')' WS* '{''}';
+do_while_statement: 'do' WS* '{' '}' WS* 'while' WS* '(' boolean_expression ')' WS*;
 
 ID: [a-zA-Z]+;
 WS: [ \t\r\n]+ -> skip;
