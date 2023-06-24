@@ -12,6 +12,7 @@ method_call: ID '.' ID '()';
 method_definition: 'method' WS+ ID '('')' WS* '{' WS* '}';
 while_statement: 'while' WS* '(' boolean_expression ')' WS* '{''}';
 do_while_statement: 'do' WS* '{' '}' WS* 'while' WS* '(' boolean_expression ')' WS*;
-
+for_statement: 'for' WS* '(' WS* ';' WS* boolean_expression WS* ';' WS* ')' '{' '}';
+    
 ID: [a-zA-Z]+;
 WS: [ \t\r\n]+ -> skip;
