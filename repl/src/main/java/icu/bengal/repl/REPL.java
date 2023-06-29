@@ -1,6 +1,6 @@
 package icu.bengal.repl;
 
-import java.util.Scanner;
+import java.io.Console;
 
 /**
  * The main entry point.
@@ -8,6 +8,11 @@ import java.util.Scanner;
  * @author Manfred Riem (manfred@bengal.icu)
  */
 public class REPL {
+    
+    /**
+     * Stores the console.
+     */
+    private Console console = System.console();
 
     /**
      * Stores the done flag.
@@ -15,9 +20,9 @@ public class REPL {
     private boolean done;
 
     /**
-     * Stores the line.
+     * Stores the line(s).
      */
-    private String line;
+    private StringBuilder lines = new StringBuilder();
 
     /**
      * Stores the result.
@@ -39,7 +44,7 @@ public class REPL {
      * Evaluate.
      */
     private void eval() {
-        result = line;
+        result = lines.toString();
     }
 
     /**
@@ -60,8 +65,12 @@ public class REPL {
      * Read.
      */
     private void read() {
-        Scanner scanner = new Scanner(System.in);
-        line = scanner.nextLine();
+        lines.setLength(0);
+        String line = console.readLine();
+        while(line != null) {
+            lines.append(line).append("\n");
+            line = console.readLine();
+        }
     }
 
     /**
