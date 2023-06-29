@@ -1,4 +1,8 @@
-grammar bengal;
+grammar Bengal;
+
+@header {
+    package icu.bengal.parser;
+}
 
 assignment: ID WS* '=' WS* method_call ';';
 boolean_false: 'false';

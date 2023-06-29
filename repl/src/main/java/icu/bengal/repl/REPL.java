@@ -1,6 +1,10 @@
 package icu.bengal.repl;
 
+import icu.bengal.parser.BengalLexer;
+import icu.bengal.parser.BengalParser;
 import java.io.Console;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 
 /**
  * The main entry point.
@@ -44,7 +48,10 @@ public class REPL {
      * Evaluate.
      */
     private void eval() {
-        result = lines.toString();
+        BengalLexer lexer = new BengalLexer(CharStreams.fromString(lines.toString()));
+        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+        BengalParser parser = new BengalParser(tokenStream);
+        result = parser.assignment().toStringTree();
     }
 
     /**
