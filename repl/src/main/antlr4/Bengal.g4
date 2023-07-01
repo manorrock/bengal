@@ -4,6 +4,7 @@ grammar Bengal;
     package icu.bengal.parser;
 }
 
+statement: assignment;
 assignment: ID WS* '=' WS* method_call ';';
 boolean_false: 'false';
 boolean_true: 'true';
