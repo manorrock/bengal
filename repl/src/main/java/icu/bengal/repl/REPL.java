@@ -51,7 +51,7 @@ public class REPL {
         BengalLexer lexer = new BengalLexer(CharStreams.fromString(lines.toString()));
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         BengalParser parser = new BengalParser(tokenStream);
-        result = parser.assignment().toStringTree();
+        result = parser.source().toStringTree();
     }
 
     /**
