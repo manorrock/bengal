@@ -5,7 +5,7 @@ grammar Bengal;
 }
 
 source: statement;
-statement: assignment;
+statement: assignment || boolean_expression;
 assignment: ID WS* '=' WS* method_call ';';
 boolean_false: 'false';
 boolean_true: 'true';
