@@ -13,7 +13,6 @@
     <name>Bengal - Project</name>
     <modules>
         <module>repl</module>
-        <module>interpreter</module>
     </modules>
     <properties>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
