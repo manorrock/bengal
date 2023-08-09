@@ -2,7 +2,9 @@ package icu.bengal.repl;
 
 import icu.bengal.parser.BengalLexer;
 import icu.bengal.parser.BengalParser;
-import java.io.Console;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -12,11 +14,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
  * @author Manfred Riem (manfred@bengal.icu)
  */
 public class REPL {
-    
-    /**
-     * Stores the console.
-     */
-    private Console console = System.console();
 
     /**
      * Stores the done flag.
@@ -26,7 +23,12 @@ public class REPL {
     /**
      * Stores the line(s).
      */
-    private StringBuilder lines = new StringBuilder();
+    private final StringBuilder lines = new StringBuilder();
+
+    /**
+     * Stores the reader.
+     */
+    private LineNumberReader reader;
 
     /**
      * Stores the result.
@@ -72,11 +74,15 @@ public class REPL {
      * Read.
      */
     private void read() {
-        lines.setLength(0);
-        String line = console.readLine();
-        while(line != null) {
-            lines.append(line).append("\n");
-            line = console.readLine();
+        try {
+            lines.setLength(0);
+            String line = reader.readLine();
+            while (line != null) {
+                lines.append(line).append("\n");
+                line = reader.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 
@@ -84,6 +90,7 @@ public class REPL {
      * REPL loop.
      */
     private void run() {
+        setup();
         banner();
         while (!done) {
             prompt();
@@ -101,5 +108,12 @@ public class REPL {
     public static void main(String[] arguments) {
         REPL repl = new REPL();
         repl.run();
+    }
+
+    /**
+     * Setup the REPL.
+     */
+    private void setup() {
+        reader = new LineNumberReader(new InputStreamReader(System.in));
     }
 }
