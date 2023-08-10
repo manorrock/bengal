@@ -97,6 +97,9 @@ public class REPL {
             read();
             eval();
             print();
+            if (lines.isEmpty()) {
+                done = true;
+            }
         }
     }
 
