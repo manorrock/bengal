@@ -1,0 +1,7 @@
+class Bengal {
+
+    method exit() {
+        Java java = new Java();
+        java.callStaticMethod("java.lang.System.exit");
+    }
+}
