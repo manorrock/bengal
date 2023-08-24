@@ -15,7 +15,13 @@
         <module>repl</module>
     </modules>
     <properties>
+        <!-- dependencies -->
+        <antlr.version>4.12.0</antlr.version>
+        <graalvm.version>21.2.0</graalvm.version>
+        <!-- plugins -->
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.6.0</maven-dependency-plugin.version>
+        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
     </properties>
     <build>
         <pluginManagement>
