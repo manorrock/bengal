@@ -5,6 +5,7 @@ import icu.bengal.parser.BengalParser;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.util.Scanner;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -26,9 +27,9 @@ public class REPL {
     private final StringBuilder lines = new StringBuilder();
 
     /**
-     * Stores the reader.
+     * Stores the scanner.
      */
-    private LineNumberReader reader;
+    private Scanner scanner;
 
     /**
      * Stores the result.
@@ -74,15 +75,16 @@ public class REPL {
      * Read.
      */
     private void read() {
-        try {
-            lines.setLength(0);
-            String line = reader.readLine();
-            while (line != null) {
-                lines.append(line).append("\n");
-                line = reader.readLine();
+        lines.setLength(0);
+        String line = scanner.nextLine();
+        while (scanner.hasNext()) {
+            lines.append(line).append("\n");
+            if (!line.contains("/exit")) {
+                line = scanner.nextLine();
+            } else {
+                lines.setLength(0);
+                System.exit(0);
             }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
         }
     }
 
@@ -117,6 +119,6 @@ public class REPL {
      * Setup the REPL.
      */
     private void setup() {
-        reader = new LineNumberReader(new InputStreamReader(System.in));
+        scanner = new Scanner(System.in);
     }
 }
