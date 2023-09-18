@@ -2,9 +2,6 @@ package icu.bengal.repl;
 
 import icu.bengal.parser.BengalLexer;
 import icu.bengal.parser.BengalParser;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
 import java.util.Scanner;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
