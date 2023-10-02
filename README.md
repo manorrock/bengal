@@ -1,5 +1,7 @@
 # Bengal
 
+[![build](https://github.com/bengalicu/bengal/actions/workflows/build.yml/badge.svg)](https://github.com/bengalicu/bengal/actions/workflows/build.yml)
+
 Our expiremental language
 
 ## Is there a language guide?
