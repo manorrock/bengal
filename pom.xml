@@ -6,12 +6,14 @@
             http://maven.apache.org/POM/4.0.0
             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>icu.bengal</groupId>
+    <groupId>com.manorrock.bengal</groupId>
     <artifactId>project</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>24.4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Bengal - Project</name>
-    <modules></modules>
+    <name>Manorrock Bengal - Project</name>
+    <modules>
+        <module>lexer</module>
+    </modules>
     <properties>
         <!-- dependencies -->
         <antlr.version>4.12.0</antlr.version>
