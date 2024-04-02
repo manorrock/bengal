@@ -1,0 +1,7 @@
+
+class Bengal {
+
+  helloWorld() {
+    test.call();
+  }
+}
