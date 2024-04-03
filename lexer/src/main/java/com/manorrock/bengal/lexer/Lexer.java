@@ -13,6 +13,11 @@ import java.io.LineNumberReader;
 public class Lexer {
     
     /**
+     * Stores the left parenthesis constant.
+     */
+    private static String LEFT_PARENTHESIS = "(";
+    
+    /**
      * Stores the semi colon constant.
      */
     private static String SEMI_COLON = ";";
@@ -27,11 +32,16 @@ public class Lexer {
         try (LineNumberReader reader = new LineNumberReader(new FileReader(inputFilename))) {
             while(reader.ready()) {
                 int character = reader.read();
-                if (character == ';') {
-                    LexerToken token = new LexerToken(SEMI_COLON, reader.getLineNumber());
-                    System.out.println(token);
-                } else {
-                    System.out.println((char) character);
+                switch (character) {
+                    case ';' ->                         {
+                            LexerToken token = new LexerToken(SEMI_COLON, reader.getLineNumber());
+                            System.out.println(token);
+                        }
+                    case '(' ->                         {
+                            LexerToken token = new LexerToken(LEFT_PARENTHESIS, reader.getLineNumber());
+                            System.out.println(token);
+                        }
+                    default -> System.out.println((char) character);
                 }
             }
         } catch(IOException ioe) {
