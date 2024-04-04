@@ -18,6 +18,11 @@ public class Lexer {
     private static String LEFT_PARENTHESIS = "(";
     
     /**
+     * Stores the right parenthesis constant.
+     */
+    private static String RIGHT_PARENTHESIS = ")";
+    
+    /**
      * Stores the semi colon constant.
      */
     private static String SEMI_COLON = ";";
@@ -39,6 +44,10 @@ public class Lexer {
                         }
                     case '(' ->                         {
                             LexerToken token = new LexerToken(LEFT_PARENTHESIS, reader.getLineNumber());
+                            System.out.println(token);
+                        }
+                    case ')' ->                         {
+                            LexerToken token = new LexerToken(RIGHT_PARENTHESIS, reader.getLineNumber());
                             System.out.println(token);
                         }
                     default -> System.out.println((char) character);
