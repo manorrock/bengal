@@ -2,6 +2,7 @@
 class Bengal {
 
   helloWorld() {
+    test = new Bengal();
     test.call();
   }
 }
