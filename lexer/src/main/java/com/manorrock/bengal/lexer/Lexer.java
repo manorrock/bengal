@@ -26,6 +26,11 @@ public class Lexer {
      * Stores the left parenthesis constant.
      */
     private static String LEFT_PARENTHESIS = "(";
+    
+    /**
+     * Stores the 'new' keyword constant.
+     */
+    private static String NEW_KEYWORD = "new";
 
     /**
      * Stores the right parenthesis constant.
@@ -71,6 +76,14 @@ public class Lexer {
                     case 'c' -> {
                         buffer.append("c");
                     }
+                    case 'e' -> {
+                        if (buffer.toString().startsWith("n")) {
+                            buffer.append("e");
+                        } else {
+                            System.out.println(buffer.toString());
+                            buffer = new StringBuilder();
+                        }
+                    }
                     case 'l' -> {
                         if (buffer.toString().startsWith("c")) {
                             buffer.append("l");
@@ -78,6 +91,9 @@ public class Lexer {
                             System.out.println(buffer.toString());
                             buffer = new StringBuilder();
                         }
+                    }
+                    case 'n' -> {
+                        buffer.append("n");
                     }
                     case 's' -> {
                         if (buffer.toString().startsWith("cla")) {
@@ -92,8 +108,26 @@ public class Lexer {
                             buffer = new StringBuilder();
                         }
                     }
-                    default ->
+                    case 'w' -> {
+                        if (buffer.toString().startsWith("ne")) {
+                            buffer.append("w");
+                            if (buffer.toString().equals("new")) {
+                                LexerToken token = new LexerToken(NEW_KEYWORD, reader.getLineNumber());
+                                System.out.println(token);
+                                buffer = new StringBuilder();
+                            }
+                        } else {
+                            System.out.println(buffer.toString());
+                            buffer = new StringBuilder();
+                        }
+                    }
+                    default -> {
+                        if (!buffer.isEmpty()) {
+                            System.out.println(buffer.toString());
+                            buffer = new StringBuilder();
+                        }
                         System.out.println((char) character);
+                    }
                 }
             }
         } catch (IOException ioe) {
