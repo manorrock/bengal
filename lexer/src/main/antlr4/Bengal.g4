@@ -1,7 +1,7 @@
 grammar Bengal;
 
 eval
-    :    (classKeyword | ifKeyword) EOF
+    :    (classKeyword | ifKeyword | leftCurly ) EOF
     ;
 
 classKeyword
@@ -10,4 +10,8 @@ classKeyword
 
 ifKeyword
     :   'if'
+    ;
+
+leftCurly
+    : '{'
     ;
