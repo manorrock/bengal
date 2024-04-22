@@ -1,0 +1,8 @@
+lexer grammar BengalLexer;
+
+KEYWORD_CLASS   : 'class';
+KEYWORD_IF      : 'if';
+
+LEFT_CURLY      : '{';
+RIGHT_CURLY     : '}';
+
