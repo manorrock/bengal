@@ -5,4 +5,5 @@ KEYWORD_IF      : 'if';
 
 LEFT_CURLY      : '{';
 RIGHT_CURLY     : '}';
+SEMI_COLON      : ';';
 
