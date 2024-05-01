@@ -9,4 +9,5 @@ SEMI_COLON          : ';';
 DOT                 : '.';
 LEFT_PARENTHESIS    : '(';
 RIGHT_PARENTHESIS   : ')';
+ASSIGNMENT_OPERATOR : '=';
 
