@@ -2,6 +2,7 @@ lexer grammar BengalLexer;
 
 KEYWORD_CLASS       : 'class';
 KEYWORD_IF          : 'if';
+KEYWORD_NEW         : 'new';
 
 LEFT_CURLY          : '{';
 RIGHT_CURLY         : '}';
