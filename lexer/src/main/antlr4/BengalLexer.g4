@@ -4,6 +4,7 @@ KEYWORD_CLASS       : 'class';
 KEYWORD_IF          : 'if';
 KEYWORD_NEW         : 'new';
 KEYWORD_DELETE      : 'delete';
+KEYWORD_TRUE        : 'true';
 
 LEFT_CURLY          : '{';
 RIGHT_CURLY         : '}';
