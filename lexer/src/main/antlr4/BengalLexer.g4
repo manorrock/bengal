@@ -5,6 +5,7 @@ KEYWORD_IF          : 'if';
 KEYWORD_NEW         : 'new';
 KEYWORD_DELETE      : 'delete';
 KEYWORD_TRUE        : 'true';
+KEYWORD_FALSE       : 'false';
 
 LEFT_CURLY          : '{';
 RIGHT_CURLY         : '}';
@@ -13,4 +14,3 @@ DOT                 : '.';
 LEFT_PARENTHESIS    : '(';
 RIGHT_PARENTHESIS   : ')';
 ASSIGNMENT_OPERATOR : '=';
-
