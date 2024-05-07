@@ -13,6 +13,7 @@
     <name>Manorrock Bengal - Project</name>
     <modules>
         <module>lexer</module>
+        <module>parser</module>
     </modules>
     <properties>
         <!-- dependencies -->
