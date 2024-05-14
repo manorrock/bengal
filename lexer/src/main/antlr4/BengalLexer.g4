@@ -6,6 +6,7 @@ KEYWORD_NEW         : 'new';
 KEYWORD_DELETE      : 'delete';
 KEYWORD_TRUE        : 'true';
 KEYWORD_FALSE       : 'false';
+KEYWORD_NIL         : 'nil';
 
 LEFT_CURLY          : '{';
 RIGHT_CURLY         : '}';
