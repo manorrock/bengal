@@ -15,3 +15,5 @@ DOT                 : '.';
 LEFT_PARENTHESIS    : '(';
 RIGHT_PARENTHESIS   : ')';
 ASSIGNMENT_OPERATOR : '=';
+
+IDENTIFIER          : [A-Za-z0-9_]+;
