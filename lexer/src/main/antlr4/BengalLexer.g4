@@ -16,4 +16,5 @@ LEFT_PARENTHESIS    : '(';
 RIGHT_PARENTHESIS   : ')';
 ASSIGNMENT_OPERATOR : '=';
 
+CHARACTER_LITERAL   : '\'' ( ~'\'' | '\\' . ) '\'';
 IDENTIFIER          : [A-Za-z0-9_]+;
