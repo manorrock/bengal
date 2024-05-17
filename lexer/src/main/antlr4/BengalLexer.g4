@@ -17,4 +17,7 @@ RIGHT_PARENTHESIS   : ')';
 ASSIGNMENT_OPERATOR : '=';
 
 CHARACTER_LITERAL   : '\'' ( ~'\'' | '\\' . ) '\'';
+STRING_LITERAL      : '\"' (STRING_ESCAPE | ~[\"\\\\\\r\\n])* '\"';
 IDENTIFIER          : [A-Za-z0-9_]+;
+
+fragment STRING_ESCAPE: '\\\\\"' | '\\\\\\\\';
