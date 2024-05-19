@@ -18,6 +18,7 @@ ASSIGNMENT_OPERATOR : '=';
 
 CHARACTER_LITERAL   : '\'' ( ~'\'' | '\\' . ) '\'';
 STRING_LITERAL      : '\"' (STRING_ESCAPE | ~[\"\\\\\\r\\n])* '\"';
+INTEGER_LITERAL     : [0-9]+;
 IDENTIFIER          : [A-Za-z0-9_]+;
 
 fragment STRING_ESCAPE: '\\\\\"' | '\\\\\\\\';
