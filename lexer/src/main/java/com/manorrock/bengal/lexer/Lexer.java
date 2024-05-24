@@ -1,9 +1,11 @@
 package com.manorrock.bengal.lexer;
 
-import java.io.File;
-import java.io.FileReader;
+import com.manorrock.bengal.lexer.antlr4.BengalLexer;
 import java.io.IOException;
-import java.io.LineNumberReader;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
 
 /**
  * The Bengal Lexer.
@@ -11,127 +13,31 @@ import java.io.LineNumberReader;
  * @author Manfred Riem (mriem@manorrock.com)
  */
 public class Lexer {
-    
-    /**
-     * Stores the buffer.
-     */
-    private static StringBuilder buffer = new StringBuilder();
-
-    /**
-     * Stores the 'class' keyword constant.
-     */
-    private static String CLASS_KEYWORD = "class";
-
-    /**
-     * Stores the left parenthesis constant.
-     */
-    private static String LEFT_PARENTHESIS = "(";
-    
-    /**
-     * Stores the 'new' keyword constant.
-     */
-    private static String NEW_KEYWORD = "new";
-
-    /**
-     * Stores the right parenthesis constant.
-     */
-    private static String RIGHT_PARENTHESIS = ")";
-
-    /**
-     * Stores the semi colon constant.
-     */
-    private static String SEMI_COLON = ";";
 
     /**
      * Main method.
-     *
-     * @param arguments the command line arguments
+     * 
+     * @param arguments the command-line arguments.
      */
     public static void main(String[] arguments) {
-        File inputFilename = new File(arguments[0]);
-        try (LineNumberReader reader = new LineNumberReader(new FileReader(inputFilename))) {
-            while (reader.ready()) {
-                int character = reader.read();
-                switch (character) {
-                    case ';' -> {
-                        LexerToken token = new LexerToken(SEMI_COLON, reader.getLineNumber());
-                        System.out.println(token);
-                    }
-                    case '(' -> {
-                        LexerToken token = new LexerToken(LEFT_PARENTHESIS, reader.getLineNumber());
-                        System.out.println(token);
-                    }
-                    case ')' -> {
-                        LexerToken token = new LexerToken(RIGHT_PARENTHESIS, reader.getLineNumber());
-                        System.out.println(token);
-                    }
-                    case 'a' -> {
-                        if (buffer.toString().startsWith("cl")) {
-                            buffer.append("a");
-                        } else {
-                            System.out.println(buffer.toString());
-                            buffer = new StringBuilder();
-                        }
-                    }
-                    case 'c' -> {
-                        buffer.append("c");
-                    }
-                    case 'e' -> {
-                        if (buffer.toString().startsWith("n")) {
-                            buffer.append("e");
-                        } else {
-                            System.out.println(buffer.toString());
-                            buffer = new StringBuilder();
-                        }
-                    }
-                    case 'l' -> {
-                        if (buffer.toString().startsWith("c")) {
-                            buffer.append("l");
-                        } else {
-                            System.out.println(buffer.toString());
-                            buffer = new StringBuilder();
-                        }
-                    }
-                    case 'n' -> {
-                        buffer.append("n");
-                    }
-                    case 's' -> {
-                        if (buffer.toString().startsWith("cla")) {
-                            buffer.append("s");
-                            if (buffer.toString().equals("class")) {
-                                LexerToken token = new LexerToken(CLASS_KEYWORD, reader.getLineNumber());
-                                System.out.println(token);
-                                buffer = new StringBuilder();
-                            }
-                        } else {
-                            System.out.println(buffer.toString());
-                            buffer = new StringBuilder();
-                        }
-                    }
-                    case 'w' -> {
-                        if (buffer.toString().startsWith("ne")) {
-                            buffer.append("w");
-                            if (buffer.toString().equals("new")) {
-                                LexerToken token = new LexerToken(NEW_KEYWORD, reader.getLineNumber());
-                                System.out.println(token);
-                                buffer = new StringBuilder();
-                            }
-                        } else {
-                            System.out.println(buffer.toString());
-                            buffer = new StringBuilder();
-                        }
-                    }
-                    default -> {
-                        if (!buffer.isEmpty()) {
-                            System.out.println(buffer.toString());
-                            buffer = new StringBuilder();
-                        }
-                        System.out.println((char) character);
-                    }
-                }
+        try {
+            if (arguments.length != 1) {
+                System.out.println("Usage: bl <input-filename>");
+                System.exit(1);
             }
-        } catch (IOException ioe) {
-
+            
+            String inputFilename = arguments[0];
+            CharStream input = CharStreams.fromFileName(inputFilename);
+            BengalLexer lexer = new BengalLexer(input);
+            
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            tokens.fill();
+            
+            for (Token token : tokens.getTokens()) {
+                System.out.println(token);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }
