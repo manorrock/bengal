@@ -20,7 +20,7 @@ LEFT_PARENTHESIS    : '(';
 RIGHT_PARENTHESIS   : ')';
 ASSIGNMENT_OPERATOR : '=';
 
-// CHARACTER_LITERAL   : '\'' ( ~'\'' | '\\' . ) '\'';
+CHARACTER_LITERAL   : '\'' [\\u0000-\\u{10FFF}] '\'';
 // STRING_LITERAL      : '\"' (STRING_ESCAPE | ~[\"\\\\\\r\\n])* '\"';
 FLOAT_LITERAL       : DIGIT+ ('.' DIGIT+)? ;
 INTEGER_LITERAL     : [0-9]+;
