@@ -4,39 +4,33 @@
     <parent>
         <groupId>com.manorrock.bengal</groupId>
         <artifactId>project</artifactId>
-        <version>24.5.0-SNAPSHOT</version>
+        <version>24.11.0-SNAPSHOT</version>
     </parent>
     <artifactId>bengal-lexer</artifactId>
     <packaging>jar</packaging>
     <name>Manorrock Bengal - Lexer</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.10.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <properties>
         <!-- other -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- plugins -->
-        <antlr4-maven-plugin.version>${antlr.version}</antlr4-maven-plugin.version>
     </properties>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.antlr</groupId>
-                <artifactId>antlr4-maven-plugin</artifactId>
-                <version>${antlr4-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>antlr</id>
-                        <goals>
-                            <goal>antlr4</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-    <dependencies>
-        <dependency>
-            <groupId>org.antlr</groupId>
-            <artifactId>antlr4-runtime</artifactId>
-            <version>${antlr.version}</version>
-        </dependency>
-    </dependencies>
 </project>

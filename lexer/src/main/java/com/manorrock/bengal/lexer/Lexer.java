@@ -1,11 +1,17 @@
+/*
+ * Copyright (c) 2002-2024 Manorrock.com. All Rights Reserved.
+ */
 package com.manorrock.bengal.lexer;
 
-import com.manorrock.bengal.lexer.antlr4.BengalLexer;
+import java.io.File;
 import java.io.IOException;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Token;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * The Bengal Lexer.
@@ -15,29 +21,88 @@ import org.antlr.v4.runtime.Token;
 public class Lexer {
 
     /**
-     * Main method.
+     * Stores the arguments.
+     */
+    private String[] arguments;
+
+    /**
+     * Stores the input file.
+     */
+    private File inputFile;
+
+    /**
+     * Stores the output file.
+     */
+    private File outputFile;
+
+    /**
+     * Run method.
+     */
+    public void run() {
+        parseArguments();
+        processFile();
+    }
+
+    /**
+     * Parse the arguments.
+     */
+    public void parseArguments() {
+        if (arguments.length >= 2) {
+            inputFile = new File(arguments[arguments.length - 2]);
+            outputFile = new File(arguments[arguments.length - 1]);
+        }
+    }
+
+    /**
+     * Process the file.
+     */
+    private void processFile() {
+        try {
+            String input = Files
+                    .lines(inputFile.toPath())
+                    .collect(Collectors.joining("\n"));
+
+            System.out.println(input);
+            
+            outputFile.getParentFile().mkdirs();
+            
+            String output = processString(input);
+            System.out.println(output);
+            
+            Files.write(outputFile.toPath(), 
+                    output.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+    
+    /**
+     * Process the input.
      * 
+     * @param input the input.
+     * @return the output.
+     */
+    public String processString(String input) {
+        return input;
+    }
+
+    /**
+     * Set the arguments.
+     *
+     * @param arguments the arguments.
+     */
+    public void setArguments(String[] arguments) {
+        this.arguments = arguments;
+    }
+
+    /**
+     * Main method.
+     *
      * @param arguments the command-line arguments.
      */
     public static void main(String[] arguments) {
-        try {
-            if (arguments.length != 1) {
-                System.out.println("Usage: bl <input-filename>");
-                System.exit(1);
-            }
-            
-            String inputFilename = arguments[0];
-            CharStream input = CharStreams.fromFileName(inputFilename);
-            BengalLexer lexer = new BengalLexer(input);
-            
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            tokens.fill();
-            
-            for (Token token : tokens.getTokens()) {
-                System.out.println(token);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        Lexer lexer = new Lexer();
+        lexer.setArguments(arguments);
+        lexer.run();
     }
 }
