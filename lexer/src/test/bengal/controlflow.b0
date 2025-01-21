@@ -1,0 +1,29 @@
+class ControlFlowExample {
+
+  main() {
+    var myBoolean = true;
+    var myCharacter = 'a';
+    var myInteger = 1234;
+    var myFloat = 1.234;
+    var myString = "Hello, Bengal!";
+    var myObject = nil;
+
+    if (myBoolean) {
+      println("Boolean is true");
+    } else {
+      println("Boolean is false");
+    }
+
+    while (myInteger > 0) {
+      myInteger = myInteger - 1;
+    }
+
+    do {
+      myFloat = myFloat - 0.1;
+    } while (myFloat > 0);
+
+    for (var i = 0; i < 10; i = i + 1) {
+      println("Loop iteration: " + i);
+    }
+  }
+}
