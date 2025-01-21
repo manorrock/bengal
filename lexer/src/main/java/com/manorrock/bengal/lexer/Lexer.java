@@ -1,108 +1,193 @@
-/*
- * Copyright (c) 2002-2024 Manorrock.com. All Rights Reserved.
- */
 package com.manorrock.bengal.lexer;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.io.FileWriter;
+import java.io.IOException;
+import com.google.gson.Gson;
 
-/**
- * The Bengal Lexer.
- *
- * @author Manfred Riem (mriem@manorrock.com)
- */
 public class Lexer {
+    private final String source;
+    private final List<Token> tokens = new ArrayList<>();
+    private int start = 0;
+    private int current = 0;
+    private int line = 1;
 
-    /**
-     * Stores the arguments.
-     */
-    private String[] arguments;
+    private static final Map<String, TokenType> keywords;
 
-    /**
-     * Stores the input file.
-     */
-    private File inputFile;
-
-    /**
-     * Stores the output file.
-     */
-    private File outputFile;
-
-    /**
-     * Run method.
-     */
-    public void run() {
-        parseArguments();
-        processFile();
+    static {
+        keywords = new HashMap<>();
+        keywords.put("class", TokenType.KEYWORD);
+        keywords.put("method", TokenType.KEYWORD);
+        keywords.put("var", TokenType.KEYWORD);
+        keywords.put("if", TokenType.KEYWORD);
+        keywords.put("else", TokenType.KEYWORD);
+        keywords.put("while", TokenType.KEYWORD);
+        keywords.put("for", TokenType.KEYWORD);
+        keywords.put("true", TokenType.BOOLEAN);
+        keywords.put("false", TokenType.BOOLEAN);
+        keywords.put("nil", TokenType.NIL);
+        keywords.put("new", TokenType.KEYWORD); 
     }
 
-    /**
-     * Parse the arguments.
-     */
-    public void parseArguments() {
-        if (arguments.length >= 2) {
-            inputFile = new File(arguments[arguments.length - 2]);
-            outputFile = new File(arguments[arguments.length - 1]);
+    public Lexer(String source) {
+        this.source = source;
+    }
+
+    public List<Token> scanTokens() {
+        while (!isAtEnd()) {
+            start = current;
+            scanToken();
+        }
+        tokens.add(new Token(TokenType.EOF, "", null, line));
+        return tokens;
+    }
+
+    private void scanToken() {
+        char c = advance();
+        switch (c) {
+            case '(': addToken(TokenType.LPAREN); break;
+            case ')': addToken(TokenType.RPAREN); break;
+            case '{': addToken(TokenType.LBRACE); break;
+            case '}': addToken(TokenType.RBRACE); break;
+            case ',': addToken(TokenType.COMMA); break;
+            case '.': addToken(TokenType.DOT); break;
+            case '-': addToken(TokenType.MINUS); break;
+            case '+': addToken(TokenType.PLUS); break;
+            case ';': addToken(TokenType.SEMICOLON); break;
+            case '*': addToken(TokenType.STAR); break;
+            case '!': addToken(match('=') ? TokenType.NOT_EQUAL : TokenType.NOT); break;
+            case '=': addToken(match('=') ? TokenType.EQUAL : TokenType.EQUAL); break;
+            case '<': addToken(match('=') ? TokenType.LESS_EQUAL : TokenType.LESS); break;
+            case '>': addToken(match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER); break;
+            case '/':
+                if (match('/')) {
+                    while (peek() != '\n' && !isAtEnd()) advance();
+                } else {
+                    addToken(TokenType.SLASH);
+                }
+                break;
+            case ' ':
+            case '\r':
+            case '\t':
+            case '\n':
+                // Skip whitespace
+                break;
+            case '"': string(); break;
+            default:
+                if (isDigit(c)) {
+                    number();
+                } else if (isAlpha(c)) {
+                    identifier();
+                } else {
+                    System.err.println("Unexpected character: " + c);
+                }
+                break;
         }
     }
 
-    /**
-     * Process the file.
-     */
-    private void processFile() {
-        try {
-            String input = Files
-                    .lines(inputFile.toPath())
-                    .collect(Collectors.joining("\n"));
+    private void identifier() {
+        while (isAlphaNumeric(peek())) advance();
+        String text = source.substring(start, current);
+        TokenType type = keywords.get(text);
+        if (type == null) type = TokenType.IDENTIFIER;
+        addToken(type, text);
+    }
 
-            System.out.println(input);
-            
-            outputFile.getParentFile().mkdirs();
-            
-            String output = processString(input);
-            System.out.println(output);
-            
-            Files.write(outputFile.toPath(), 
-                    output.getBytes(StandardCharsets.UTF_8));
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+    private void number() {
+        while (isDigit(peek())) advance();
+        if (peek() == '.' && isDigit(peekNext())) {
+            advance();
+            while (isDigit(peek())) advance();
         }
+        addToken(TokenType.NUMBER, Double.parseDouble(source.substring(start, current)));
+    }
+
+    private void string() {
+        while (peek() != '"' && !isAtEnd()) {
+            if (peek() == '\n') line++;
+            advance();
+        }
+        if (isAtEnd()) {
+            System.err.println("Unterminated string.");
+            return;
+        }
+        advance();
+        String value = source.substring(start + 1, current - 1);
+        addToken(TokenType.STRING, value);
+    }
+
+    private boolean match(char expected) {
+        if (isAtEnd()) return false;
+        if (source.charAt(current) != expected) return false;
+        current++;
+        return true;
+    }
+
+    private char peek() {
+        if (isAtEnd()) return '\0';
+        return source.charAt(current);
+    }
+
+    private char peekNext() {
+        if (current + 1 >= source.length()) return '\0';
+        return source.charAt(current + 1);
+    }
+
+    private boolean isAlpha(char c) {
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_';
+    }
+
+    private boolean isAlphaNumeric(char c) {
+        return isAlpha(c) || isDigit(c);
+    }
+
+    private boolean isDigit(char c) {
+        return c >= '0' && c <= '9';
+    }
+
+    private boolean isAtEnd() {
+        return current >= source.length();
+    }
+
+    private char advance() {
+        return source.charAt(current++);
+    }
+
+    private void addToken(TokenType type) {
+        addToken(type, null);
     }
     
-    /**
-     * Process the input.
-     * 
-     * @param input the input.
-     * @return the output.
-     */
-    public String processString(String input) {
-        return input;
+    private void addToken(TokenType type, Object literal) {
+        String text = source.substring(start, current);
+        tokens.add(new Token(type, text, literal, line));
     }
 
-    /**
-     * Set the arguments.
-     *
-     * @param arguments the arguments.
-     */
-    public void setArguments(String[] arguments) {
-        this.arguments = arguments;
-    }
+    public static void main(String[] args) {
+        if (args.length < 1 || args.length > 2) {
+            System.err.println("Usage: java Lexer <source> [<output file>]");
+            System.exit(1);
+        }
 
-    /**
-     * Main method.
-     *
-     * @param arguments the command-line arguments.
-     */
-    public static void main(String[] arguments) {
-        Lexer lexer = new Lexer();
-        lexer.setArguments(arguments);
-        lexer.run();
+        String source = args[0];
+        String outputFile = args.length == 2 ? args[1] : null;
+
+        Lexer lexer = new Lexer(source);
+        List<Token> tokens = lexer.scanTokens();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(tokens);
+
+        if (outputFile == null) {
+            System.out.println(json);
+        } else {
+            try (FileWriter writer = new FileWriter(outputFile)) {
+                writer.write(json);
+            } catch (IOException e) {
+                System.err.println("Error writing to file: " + e.getMessage());
+            }
+        }
     }
 }
