@@ -1,0 +1,22 @@
+class MyClass {
+  var myVariable;
+
+  MyClass() {
+    myVariable = "Initial value";
+  }
+
+  setVariable(newValue) {
+    myVariable = newValue;
+  }
+
+  getVariable() {
+    return myVariable;
+  }
+
+  main() {
+    var instance = new MyClass();
+    instance.setVariable("Updated value");
+    var result = instance.getVariable();
+    println("Variable value: " + result);
+  }
+}

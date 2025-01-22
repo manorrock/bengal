@@ -1,0 +1,14 @@
+class IntegrationExample {
+
+  main() {
+    var myString = "Hello from Bengal";
+
+    // Java integration
+    var java = new Java();
+    java.callStaticMethod("java.lang.System.out.println", myString);
+
+    // Posix integration
+    var posix = new Posix();
+    posix.call("mylib.so", "myfunction", myString);
+  }
+}
