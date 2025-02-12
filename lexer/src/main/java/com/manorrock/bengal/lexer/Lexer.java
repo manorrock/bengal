@@ -69,6 +69,11 @@ public class Lexer {
                     addToken(TokenType.SLASH);
                 }
                 break;
+            case ':':
+                if (match('=')) {
+                    addToken(TokenType.ASSIGN);
+                }
+                break;
             case ' ':
             case '\r':
             case '\t':
@@ -93,7 +98,7 @@ public class Lexer {
         String text = source.substring(start, current);
         TokenType type = keywords.get(text);
         if (type == null) type = TokenType.IDENTIFIER;
-        addToken(type, text);
+        addToken(type);
     }
 
     private void number() {
@@ -102,7 +107,7 @@ public class Lexer {
             advance();
             while (isDigit(peek())) advance();
         }
-        addToken(TokenType.NUMBER, Double.parseDouble(source.substring(start, current)));
+        addToken(TokenType.NUMBER, source.substring(start, current));
     }
 
     private void string() {
