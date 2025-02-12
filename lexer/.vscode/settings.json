@@ -1,0 +1,10 @@
+{
+    "java.test.config": {
+        "name": "JUnit",
+        "workingDirectory": "${workspaceFolder}",
+        "args": ["-javaagent:${workspaceFolder}/target/jacoco-agent.jar=destfile=${workspaceFolder}/target/jacoco.exec"]
+    },
+    "coverage-gutters.coverageFileNames": [
+        "jacoco.exec"
+    ]
+}

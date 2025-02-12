@@ -13,6 +13,9 @@ class MyClass {
     return myVariable;
   }
 
+  method push(item) {
+  }
+
   main() {
     var instance = new MyClass();
     instance.setVariable("Updated value");
